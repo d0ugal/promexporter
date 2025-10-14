@@ -2,7 +2,7 @@ module github.com/d0ugal/promexporter
 
 go 1.23.0
 
-toolchain go1.24.9
+toolchain go1.25.3
 
 require (
 	github.com/gin-gonic/gin v1.11.0
