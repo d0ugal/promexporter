@@ -260,20 +260,19 @@
         </ul>
     </div>
 
-    {{if .Config}}
     <div class="metrics-info">
         <h3>Configuration</h3>
         <ul>
-            {{range $key, $value := .Config}}
-            <li><strong>{{$key}}:</strong> {{$value}}</li>
-            {{end}}
+            <li><strong>MQTT Broker:</strong> 10.10.10.2:1883</li>
+            <li><strong>Client ID:</strong> mqtt-exporter</li>
+            <li><strong>Topics:</strong> 1 configured</li>
+            <li><strong>QoS Level:</strong> 1</li>
         </ul>
     </div>
-    {{end}}
 
     <div class="footer">
         <p>Copyright © 2025 Dougal Matthews. Licensed under <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.</p>
-        <p><a href="https://github.com/d0ugal/{{.ExporterName}}" target="_blank">GitHub Repository</a> | <a href="https://github.com/d0ugal/{{.ExporterName}}/issues" target="_blank">Report Issues</a></p>
+        <p><a href="https://github.com/d0ugal/mqtt-exporter" target="_blank">GitHub Repository</a> | <a href="https://github.com/d0ugal/mqtt-exporter/issues" target="_blank">Report Issues</a></p>
     </div>
 </body>
 </html>
