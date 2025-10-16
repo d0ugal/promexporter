@@ -2,6 +2,7 @@ package metrics
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/collectors"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 )
 
@@ -18,7 +19,7 @@ type Registry struct {
 }
 
 // NewRegistry creates a new metrics registry
-func NewRegistry() *Registry {
+func NewRegistry(exporterInfoName string) *Registry {
 	registry := prometheus.NewRegistry()
 	factory := promauto.With(registry)
 
@@ -26,36 +27,19 @@ func NewRegistry() *Registry {
 		registry: registry,
 		VersionInfo: factory.NewGaugeVec(
 			prometheus.GaugeOpts{
-				Name: "exporter_info",
+				Name: exporterInfoName,
 				Help: "Information about the exporter",
 			},
 			[]string{"version", "commit", "build_date"},
 		),
 	}
 
-	// Add version info metric to the UI info
-	r.addMetricInfo("exporter_info", "Information about the exporter", []string{"version", "commit", "build_date"})
-
-	return r
-}
-
-// NewRegistryWithCustom creates a new metrics registry with a custom registry
-func NewRegistryWithCustom(registry *prometheus.Registry) *Registry {
-	factory := promauto.With(registry)
-
-	r := &Registry{
-		registry: registry,
-		VersionInfo: factory.NewGaugeVec(
-			prometheus.GaugeOpts{
-				Name: "exporter_info",
-				Help: "Information about the exporter",
-			},
-			[]string{"version", "commit", "build_date"},
-		),
-	}
+	// Register standard Go runtime collectors
+	registry.MustRegister(collectors.NewGoCollector())
+	registry.MustRegister(collectors.NewProcessCollector(collectors.ProcessCollectorOpts{}))
 
 	// Add version info metric to the UI info
-	r.addMetricInfo("exporter_info", "Information about the exporter", []string{"version", "commit", "build_date"})
+	r.addMetricInfo(exporterInfoName, "Information about the exporter", []string{"version", "commit", "build_date"})
 
 	return r
 }

@@ -67,7 +67,9 @@ func (s *Server) setupRoutes() {
 	s.router.GET("/", s.handleRoot)
 
 	// Metrics endpoint - use our custom registry
-	s.router.GET("/metrics", gin.WrapH(promhttp.HandlerFor(s.metrics.GetRegistry(), promhttp.HandlerOpts{})))
+	s.router.GET("/metrics", gin.WrapH(promhttp.HandlerFor(s.metrics.GetRegistry(), promhttp.HandlerOpts{
+		EnableOpenMetrics: true,
+	})))
 
 	// Health endpoint
 	s.router.GET("/health", s.handleHealth)
