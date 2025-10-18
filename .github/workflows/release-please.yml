@@ -25,6 +25,9 @@ jobs:
         release-type: go
         path: .
         token: ${{ secrets.GITHUB_TOKEN }}
+        version-file: version/version.go
+        bump-minor-pre-major: true
+        bump-patch-for-minor-pre-major: true
 
     # Debug info
     - name: Debug Release Info
