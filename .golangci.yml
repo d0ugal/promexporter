@@ -45,6 +45,9 @@ linters:
       excludes:
         - G204  # Subprocess launched with variable - inputs are validated and sanitized
         - G304  # Potential file inclusion via variable - path is validated and comes from trusted config
+    errcheck:
+      # Use the new configuration format
+      exclude-functions: []
 
 formatters:
   enable:
