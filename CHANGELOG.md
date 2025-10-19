@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/d0ugal/promexporter/compare/v1.0.0...v1.0.1) (2025-10-19)
+
+
+### Bug Fixes
+
+* resolve funcorder linting issues ([c7ed478](https://github.com/d0ugal/promexporter/commit/c7ed478f9cdad858799438158d37523d9aeb38f3))
+* update linting configuration and format code ([fb2b3c3](https://github.com/d0ugal/promexporter/commit/fb2b3c3a7be2196c5c77aaf1899fb517482aec1d))
+
 ## 1.0.0 (2025-10-18)
 
 
