@@ -206,6 +206,11 @@ func (c *BaseConfig) Validate() error {
 	return nil
 }
 
+// GetDefaultInterval returns the default collection interval
+func (c *BaseConfig) GetDefaultInterval() int {
+	return c.Metrics.Collection.DefaultInterval.Seconds()
+}
+
 func (c *BaseConfig) validateServerConfig() error {
 	if c.Server.Port < 1 || c.Server.Port > 65535 {
 		return fmt.Errorf("port must be between 1 and 65535, got %d", c.Server.Port)
@@ -246,9 +251,4 @@ func (c *BaseConfig) validateMetricsConfig() error {
 	}
 
 	return nil
-}
-
-// GetDefaultInterval returns the default collection interval
-func (c *BaseConfig) GetDefaultInterval() int {
-	return c.Metrics.Collection.DefaultInterval.Seconds()
 }

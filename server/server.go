@@ -62,6 +62,41 @@ func customGinLogger() gin.HandlerFunc {
 	})
 }
 
+// Start starts the HTTP server
+func (s *Server) Start() error {
+	addr := fmt.Sprintf("%s:%d", s.config.Server.Host, s.config.Server.Port)
+
+	s.server = &http.Server{
+		Addr:              addr,
+		Handler:           s.router,
+		ReadHeaderTimeout: 30 * time.Second,
+	}
+
+	slog.Info("Starting exporter server",
+		"name", s.name,
+		"address", addr,
+	)
+
+	return s.server.ListenAndServe()
+}
+
+// Shutdown gracefully shuts down the server
+func (s *Server) Shutdown() error {
+	if s.server != nil {
+		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+		defer cancel()
+
+		if err := s.server.Shutdown(ctx); err != nil {
+			slog.Error("Server shutdown error", "error", err)
+			return err
+		} else {
+			slog.Info("Server shutdown gracefully")
+		}
+	}
+
+	return nil
+}
+
 func (s *Server) setupRoutes() {
 	// Root endpoint with HTML dashboard
 	s.router.GET("/", s.handleRoot)
@@ -127,39 +162,4 @@ func (s *Server) getConfigData() map[string]interface{} {
 		"Log Level":   s.config.Logging.Level,
 		"Log Format":  s.config.Logging.Format,
 	}
-}
-
-// Start starts the HTTP server
-func (s *Server) Start() error {
-	addr := fmt.Sprintf("%s:%d", s.config.Server.Host, s.config.Server.Port)
-
-	s.server = &http.Server{
-		Addr:              addr,
-		Handler:           s.router,
-		ReadHeaderTimeout: 30 * time.Second,
-	}
-
-	slog.Info("Starting exporter server",
-		"name", s.name,
-		"address", addr,
-	)
-
-	return s.server.ListenAndServe()
-}
-
-// Shutdown gracefully shuts down the server
-func (s *Server) Shutdown() error {
-	if s.server != nil {
-		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-		defer cancel()
-
-		if err := s.server.Shutdown(ctx); err != nil {
-			slog.Error("Server shutdown error", "error", err)
-			return err
-		} else {
-			slog.Info("Server shutdown gracefully")
-		}
-	}
-
-	return nil
 }

@@ -44,16 +44,6 @@ func NewRegistry(exporterInfoName string) *Registry {
 	return r
 }
 
-// addMetricInfo adds metric information to the registry
-func (r *Registry) addMetricInfo(name, help string, labels []string) {
-	r.metricInfo = append(r.metricInfo, MetricInfo{
-		Name:         name,
-		Help:         help,
-		Labels:       labels,
-		ExampleValue: "",
-	})
-}
-
 // AddMetricInfo allows external packages to add metric information
 func (r *Registry) AddMetricInfo(name, help string, labels []string) {
 	r.addMetricInfo(name, help, labels)
@@ -67,4 +57,14 @@ func (r *Registry) GetRegistry() *prometheus.Registry {
 // GetMetricsInfo returns information about all metrics for the UI
 func (r *Registry) GetMetricsInfo() []MetricInfo {
 	return r.metricInfo
+}
+
+// addMetricInfo adds metric information to the registry
+func (r *Registry) addMetricInfo(name, help string, labels []string) {
+	r.metricInfo = append(r.metricInfo, MetricInfo{
+		Name:         name,
+		Help:         help,
+		Labels:       labels,
+		ExampleValue: "",
+	})
 }
