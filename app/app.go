@@ -16,10 +16,10 @@ import (
 
 // App represents the main application
 type App struct {
-	name     string
-	config   *config.BaseConfig
-	metrics  *metrics.Registry
-	server   *server.Server
+	name       string
+	config     *config.BaseConfig
+	metrics    *metrics.Registry
+	server     *server.Server
 	collectors []Collector
 }
 

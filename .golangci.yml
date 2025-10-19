@@ -2,20 +2,23 @@ version: "2"
 
 run:
   timeout: 5m
-  go: "1.25.1"
+  go: "1.25.3"
 
 linters:
   # Use fast linters for better performance
   default: fast
   enable:
     - govet
-    - staticcheck
     - errcheck
     - gosec
     - ineffassign
     - unused
-    - contextcheck
     - wsl
+    - contextcheck
+    - staticcheck
+    - gosimple
+    - gocritic
+    - gocognit
     
   disable:
     - typecheck  # Disable typecheck due to import resolution issues
