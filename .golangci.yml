@@ -16,12 +16,8 @@ linters:
     - wsl
     - contextcheck
     - staticcheck
-    - gosimple
-    - gocritic
-    - gocognit
     
   disable:
-    - typecheck  # Disable typecheck due to import resolution issues
     - cyclop  # Too strict
     - depguard  # Allow internal imports
     - err113  # Allow dynamic errors

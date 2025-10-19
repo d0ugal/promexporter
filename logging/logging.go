@@ -15,6 +15,7 @@ type Config struct {
 // Configure sets up logging based on the configuration
 func Configure(cfg *Config) {
 	var level slog.Level
+
 	switch strings.ToLower(cfg.Level) {
 	case "debug":
 		level = slog.LevelDebug

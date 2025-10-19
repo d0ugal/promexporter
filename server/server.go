@@ -160,5 +160,6 @@ func (s *Server) Shutdown() error {
 			slog.Info("Server shutdown gracefully")
 		}
 	}
+
 	return nil
 }
