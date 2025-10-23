@@ -21,6 +21,7 @@ func (s SensitiveString) String() string {
 	if s.value == "" {
 		return "[EMPTY]"
 	}
+
 	return "[REDACTED]"
 }
 
@@ -45,7 +46,9 @@ func (s *SensitiveString) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, &str); err != nil {
 		return err
 	}
+
 	s.value = str
+
 	return nil
 }
 
@@ -94,6 +97,7 @@ func (cd *ConfigDisplay) GetFields() map[string]interface{} {
 // ToDisplayMap converts the configuration to a map suitable for display
 func (cd *ConfigDisplay) ToDisplayMap() map[string]interface{} {
 	result := make(map[string]interface{})
+
 	for key, value := range cd.fields {
 		switch v := value.(type) {
 		case SensitiveString:
@@ -127,5 +131,6 @@ func CreateSensitiveStringFromEnv(key, value string) interface{} {
 	if IsSensitiveField(key) {
 		return NewSensitiveString(value)
 	}
+
 	return value
 }
