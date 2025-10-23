@@ -211,6 +211,17 @@ func (c *BaseConfig) GetDefaultInterval() int {
 	return c.Metrics.Collection.DefaultInterval.Seconds()
 }
 
+// GetDisplayConfig returns configuration data safe for display
+// This method can be overridden by exporters to include their own configuration
+func (c *BaseConfig) GetDisplayConfig() map[string]interface{} {
+	return map[string]interface{}{
+		"Server Host": c.Server.Host,
+		"Server Port": c.Server.Port,
+		"Log Level":   c.Logging.Level,
+		"Log Format":  c.Logging.Format,
+	}
+}
+
 func (c *BaseConfig) validateServerConfig() error {
 	if c.Server.Port < 1 || c.Server.Port > 65535 {
 		return fmt.Errorf("port must be between 1 and 65535, got %d", c.Server.Port)

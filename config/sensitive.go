@@ -52,63 +52,6 @@ func (s *SensitiveString) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// ConfigDisplay represents configuration data that can be safely displayed
-// It automatically handles sensitive fields
-type ConfigDisplay struct {
-	fields map[string]interface{}
-}
-
-// NewConfigDisplay creates a new ConfigDisplay
-func NewConfigDisplay() *ConfigDisplay {
-	return &ConfigDisplay{
-		fields: make(map[string]interface{}),
-	}
-}
-
-// Add adds a regular configuration field
-func (cd *ConfigDisplay) Add(key, value string) *ConfigDisplay {
-	cd.fields[key] = value
-	return cd
-}
-
-// AddSensitive adds a sensitive configuration field
-func (cd *ConfigDisplay) AddSensitive(key string, value SensitiveString) *ConfigDisplay {
-	cd.fields[key] = value
-	return cd
-}
-
-// AddInt adds an integer configuration field
-func (cd *ConfigDisplay) AddInt(key string, value int) *ConfigDisplay {
-	cd.fields[key] = value
-	return cd
-}
-
-// AddBool adds a boolean configuration field
-func (cd *ConfigDisplay) AddBool(key string, value bool) *ConfigDisplay {
-	cd.fields[key] = value
-	return cd
-}
-
-// GetFields returns the configuration fields for display
-func (cd *ConfigDisplay) GetFields() map[string]interface{} {
-	return cd.fields
-}
-
-// ToDisplayMap converts the configuration to a map suitable for display
-func (cd *ConfigDisplay) ToDisplayMap() map[string]interface{} {
-	result := make(map[string]interface{})
-
-	for key, value := range cd.fields {
-		switch v := value.(type) {
-		case SensitiveString:
-			result[key] = v.String()
-		default:
-			result[key] = value
-		}
-	}
-
-	return result
-}
 
 // IsSensitiveField checks if a field name indicates it contains sensitive data
 func IsSensitiveField(fieldName string) bool {
@@ -127,12 +70,3 @@ func IsSensitiveField(fieldName string) bool {
 	return false
 }
 
-// CreateSensitiveStringFromEnv creates a SensitiveString from an environment variable
-// if the field name indicates it's sensitive
-func CreateSensitiveStringFromEnv(key, value string) interface{} {
-	if IsSensitiveField(key) {
-		return NewSensitiveString(value)
-	}
-
-	return value
-}
