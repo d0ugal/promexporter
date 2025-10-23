@@ -2,7 +2,6 @@ package config
 
 import (
 	"encoding/json"
-	"strings"
 )
 
 // SensitiveString represents a string value that should be treated as sensitive
@@ -51,22 +50,3 @@ func (s *SensitiveString) UnmarshalJSON(data []byte) error {
 
 	return nil
 }
-
-
-// IsSensitiveField checks if a field name indicates it contains sensitive data
-func IsSensitiveField(fieldName string) bool {
-	upperField := strings.ToUpper(fieldName)
-	sensitivePatterns := []string{
-		"PASSWORD", "PASS", "SECRET", "KEY", "TOKEN", "AUTH",
-		"CREDENTIAL", "CRED", "PRIVATE", "SENSITIVE",
-	}
-
-	for _, pattern := range sensitivePatterns {
-		if strings.Contains(upperField, pattern) {
-			return true
-		}
-	}
-
-	return false
-}
-
