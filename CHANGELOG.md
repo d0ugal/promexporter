@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/d0ugal/promexporter/compare/v1.0.1...v1.0.2) (2025-10-23)
+
+
+### Bug Fixes
+
+* update module github.com/prometheus/procfs to v0.18.0 ([efc02be](https://github.com/d0ugal/promexporter/commit/efc02be5989fbd5297925b5477952c069b48ad6e))
+
 ## [1.0.1](https://github.com/d0ugal/promexporter/compare/v1.0.0...v1.0.1) (2025-10-19)
 
 
