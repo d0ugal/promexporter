@@ -155,6 +155,8 @@ func (s *Server) handleHealth(c *gin.Context) {
 }
 
 // getConfigData returns configuration data for the template
+// This is a simple implementation that can be overridden by exporters
+// to provide their own configuration display logic
 func (s *Server) getConfigData() map[string]interface{} {
 	return map[string]interface{}{
 		"Server Host": s.config.Server.Host,
