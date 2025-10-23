@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.0](https://github.com/d0ugal/promexporter/compare/v1.0.2...v1.1.0) (2025-10-23)
+
+
+### Features
+
+* add SensitiveString type for explicit sensitive configuration handling ([2984151](https://github.com/d0ugal/promexporter/commit/298415176ba2b8fdb08b8bb5c249aa91f079c409))
+
+
+### Bug Fixes
+
+* actually use ConfigDisplay in getConfigData method ([79809a4](https://github.com/d0ugal/promexporter/commit/79809a40c05b1e41e9a0190540f05da805f3b82e))
+* format code with go fmt ([611f9bd](https://github.com/d0ugal/promexporter/commit/611f9bd3136116d9b0beed3ad2ef547610821a9a))
+* resolve remaining wsl linting issues ([fb25803](https://github.com/d0ugal/promexporter/commit/fb25803e3b4de5cd590d493824602c2f1aee352d))
+* resolve wsl linting issues in sensitive.go ([d9cb539](https://github.com/d0ugal/promexporter/commit/d9cb53912f827424d2c5d63e9a060e26c4e7ea90))
+* update golangci-lint config for Go version compatibility ([905faa3](https://github.com/d0ugal/promexporter/commit/905faa304747fd4ff112caf3f887459cc91cbfd0))
+
 ## [1.0.2](https://github.com/d0ugal/promexporter/compare/v1.0.1...v1.0.2) (2025-10-23)
 
 
