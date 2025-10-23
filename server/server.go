@@ -155,13 +155,15 @@ func (s *Server) handleHealth(c *gin.Context) {
 }
 
 // getConfigData returns configuration data for the template
-// This is a simple implementation that can be overridden by exporters
-// to provide their own configuration display logic
+// Uses ConfigDisplay to handle sensitive fields properly
 func (s *Server) getConfigData() map[string]interface{} {
-	return map[string]interface{}{
-		"Server Host": s.config.Server.Host,
-		"Server Port": s.config.Server.Port,
-		"Log Level":   s.config.Logging.Level,
-		"Log Format":  s.config.Logging.Format,
-	}
+	config := config.NewConfigDisplay()
+	
+	// Add basic server configuration
+	config.Add("Server Host", s.config.Server.Host)
+	config.AddInt("Server Port", s.config.Server.Port)
+	config.Add("Log Level", s.config.Logging.Level)
+	config.Add("Log Format", s.config.Logging.Format)
+	
+	return config.ToDisplayMap()
 }
