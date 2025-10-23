@@ -106,6 +106,7 @@ func (cd *ConfigDisplay) ToDisplayMap() map[string]interface{} {
 			result[key] = value
 		}
 	}
+
 	return result
 }
 
@@ -122,6 +123,7 @@ func IsSensitiveField(fieldName string) bool {
 			return true
 		}
 	}
+
 	return false
 }
 
