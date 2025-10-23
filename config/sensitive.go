@@ -112,7 +112,7 @@ func IsSensitiveField(fieldName string) bool {
 		"PASSWORD", "PASS", "SECRET", "KEY", "TOKEN", "AUTH",
 		"CREDENTIAL", "CRED", "PRIVATE", "SENSITIVE",
 	}
-	
+
 	for _, pattern := range sensitivePatterns {
 		if strings.Contains(upperField, pattern) {
 			return true
