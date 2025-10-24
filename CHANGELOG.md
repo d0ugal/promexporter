@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.4.0](https://github.com/d0ugal/promexporter/compare/v1.3.1...v1.4.0) (2025-10-24)
+
+
+### Features
+
+* add custom template rendering system ([6086ba2](https://github.com/d0ugal/promexporter/commit/6086ba2c5e66b062ee3f3816f932e326dc8c9fa6))
+* add optional web UI and health endpoint configuration ([6f2da4f](https://github.com/d0ugal/promexporter/commit/6f2da4f0dc7a0e0ec982b5201c2c3ddabb070836))
+* add optional web UI and health endpoint configuration ([4fdfca4](https://github.com/d0ugal/promexporter/commit/4fdfca450361e21b091598d48f4076b4ee128af2))
+* improve configuration display formatting ([c6d2716](https://github.com/d0ugal/promexporter/commit/c6d27166de7e329fecc0a5c7bcb8d3021247430d))
+* improve nested map formatting ([2ee04e0](https://github.com/d0ugal/promexporter/commit/2ee04e02759e6ce30f6c27c05dc994a96b40b3c0))
+* support custom HTML fragments for config rendering ([2b3a5af](https://github.com/d0ugal/promexporter/commit/2b3a5afd01ff912d7b7ed70b5b20c0ff5a67e5f3))
+
+
+### Bug Fixes
+
+* handle array of maps in template formatting ([b0abbf0](https://github.com/d0ugal/promexporter/commit/b0abbf02cd29d4d43acb9481ebbae11bedb7eb61))
+* pass custom HTML as template.HTML to prevent escaping ([3845e5b](https://github.com/d0ugal/promexporter/commit/3845e5b3c25bf1067e29ff4748394e7cd4e865a3))
+* register safeHTML template function ([c98ba6e](https://github.com/d0ugal/promexporter/commit/c98ba6eb939b6dc4908dfcd4cfd8c1e90c5bd300))
+* use safeHTML instead of html filter for custom HTML fragments ([80b7744](https://github.com/d0ugal/promexporter/commit/80b7744c64cf390d91ac79c35a4d33f442a50b0c))
+
 ## [1.3.1](https://github.com/d0ugal/promexporter/compare/v1.3.0...v1.3.1) (2025-10-24)
 
 
