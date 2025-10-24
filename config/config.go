@@ -222,6 +222,16 @@ func (c *BaseConfig) GetDisplayConfig() map[string]interface{} {
 	}
 }
 
+// GetLogging returns the logging configuration
+func (c *BaseConfig) GetLogging() *LoggingConfig {
+	return &c.Logging
+}
+
+// GetServer returns the server configuration
+func (c *BaseConfig) GetServer() *ServerConfig {
+	return &c.Server
+}
+
 func (c *BaseConfig) validateServerConfig() error {
 	if c.Server.Port < 1 || c.Server.Port > 65535 {
 		return fmt.Errorf("port must be between 1 and 65535, got %d", c.Server.Port)

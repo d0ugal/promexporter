@@ -14,10 +14,17 @@ import (
 	"github.com/d0ugal/promexporter/version"
 )
 
+// ConfigInterface defines the interface that configuration types must implement
+type ConfigInterface interface {
+	GetDisplayConfig() map[string]interface{}
+	GetLogging() *config.LoggingConfig
+	GetServer() *config.ServerConfig
+}
+
 // App represents the main application
 type App struct {
 	name       string
-	config     *config.BaseConfig
+	config     ConfigInterface
 	metrics    *metrics.Registry
 	server     *server.Server
 	collectors []Collector
@@ -37,7 +44,7 @@ func New(name string) *App {
 }
 
 // WithConfig sets the configuration
-func (a *App) WithConfig(cfg *config.BaseConfig) *App {
+func (a *App) WithConfig(cfg ConfigInterface) *App {
 	a.config = cfg
 	return a
 }
@@ -57,9 +64,10 @@ func (a *App) WithCollector(collector Collector) *App {
 // Build finalizes the application setup
 func (a *App) Build() *App {
 	// Configure logging
+	loggingConfig := a.config.GetLogging()
 	logging.Configure(&logging.Config{
-		Level:  a.config.Logging.Level,
-		Format: a.config.Logging.Format,
+		Level:  loggingConfig.Level,
+		Format: loggingConfig.Format,
 	})
 
 	// Set version info metric

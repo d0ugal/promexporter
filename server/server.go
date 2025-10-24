@@ -14,9 +14,16 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
+// ConfigInterface defines the interface that configuration types must implement
+type ConfigInterface interface {
+	GetDisplayConfig() map[string]interface{}
+	GetLogging() *config.LoggingConfig
+	GetServer() *config.ServerConfig
+}
+
 // Server handles HTTP requests and serves metrics
 type Server struct {
-	config  *config.BaseConfig
+	config  ConfigInterface
 	metrics *metrics.Registry
 	server  *http.Server
 	router  *gin.Engine
@@ -24,9 +31,10 @@ type Server struct {
 }
 
 // New creates a new server instance
-func New(cfg *config.BaseConfig, metricsRegistry *metrics.Registry, exporterName string) *Server {
+func New(cfg ConfigInterface, metricsRegistry *metrics.Registry, exporterName string) *Server {
 	// Set Gin to release mode unless debug logging is enabled
-	if cfg.Logging.Level != "debug" {
+	loggingConfig := cfg.GetLogging()
+	if loggingConfig.Level != "debug" {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
@@ -64,7 +72,8 @@ func customGinLogger() gin.HandlerFunc {
 
 // Start starts the HTTP server
 func (s *Server) Start() error {
-	addr := fmt.Sprintf("%s:%d", s.config.Server.Host, s.config.Server.Port)
+	serverConfig := s.config.GetServer()
+	addr := fmt.Sprintf("%s:%d", serverConfig.Host, serverConfig.Port)
 
 	s.server = &http.Server{
 		Addr:              addr,
