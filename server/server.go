@@ -170,7 +170,8 @@ func (s *Server) getConfigData() map[string]interface{} {
 
 	// Add sensitivity information to each config value
 	for key, value := range config {
-		if sensitiveValue, ok := value.(config.SensitiveValue); ok && sensitiveValue.IsSensitive() {
+		// Check if the value is a SensitiveString
+		if _, ok := value.(config.SensitiveString); ok {
 			// Wrap sensitive values with metadata
 			config[key] = map[string]interface{}{
 				"value":     value,
