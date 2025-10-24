@@ -178,7 +178,8 @@ func (s *Server) getConfigData() map[string]interface{} {
 				"sensitive": true,
 			}
 		} else {
-			// Wrap non-sensitive values with metadata
+			// For non-sensitive values, preserve the original data structure
+			// but add sensitivity metadata
 			config[key] = map[string]interface{}{
 				"value":     value,
 				"sensitive": false,

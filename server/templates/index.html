@@ -372,6 +372,9 @@
             <div class="config-item">
                 <div class="config-key">{{$key}}</div>
                 <div class="config-value {{if $value.sensitive}}sensitive{{end}}">
+                    {{/* Debug: Show the type of the value */}}
+                    {{/* Type: {{printf "%T" $value.value}} */}}
+                    
                     {{if eq (printf "%T" $value.value) "[]interface {}"}}
                         {{/* Handle arrays/slices */}}
                         <div class="array-container">
