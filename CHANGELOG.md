@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/d0ugal/promexporter/compare/v1.2.0...v1.3.0) (2025-10-24)
+
+
+### Features
+
+* improve configuration display with type-based sensitivity detection ([a51340c](https://github.com/d0ugal/promexporter/commit/a51340ce7d5c07068e97072f911fbeb39c3d3210))
+
+
+### Bug Fixes
+
+* use concrete type check instead of interface assertion ([271b007](https://github.com/d0ugal/promexporter/commit/271b007fb44b9911ea81c1ef3350ae4980d1188f))
+
 ## [1.2.0](https://github.com/d0ugal/promexporter/compare/v1.1.0...v1.2.0) (2025-10-24)
 
 
