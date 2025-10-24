@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/d0ugal/promexporter/compare/v1.1.0...v1.2.0) (2025-10-24)
+
+
+### Features
+
+* support custom configuration types in app and server ([deb4530](https://github.com/d0ugal/promexporter/commit/deb4530423cb46b2d0ce2e7310134f2507b6219e))
+
 ## [1.1.0](https://github.com/d0ugal/promexporter/compare/v1.0.2...v1.1.0) (2025-10-23)
 
 
