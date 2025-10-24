@@ -21,9 +21,9 @@ type ConfigInterface interface {
 	GetServer() *config.ServerConfig
 }
 
-// CustomConfigRenderer allows exporters to provide custom templates for specific config keys
+// CustomConfigRenderer allows exporters to provide custom HTML fragments for specific config keys
 type CustomConfigRenderer interface {
-	GetConfigTemplate(key string) (string, bool)
+	RenderConfigHTML(key string, value interface{}) (string, bool)
 }
 
 // Server handles HTTP requests and serves metrics
@@ -193,10 +193,10 @@ func (s *Server) getConfigData() map[string]interface{} {
 
 		// Check if the config implements CustomConfigRenderer
 		if renderer, ok := s.config.(CustomConfigRenderer); ok {
-			if templateName, hasTemplate := renderer.GetConfigTemplate(key); hasTemplate {
-				// Add template name to the config value
+			if customHTML, hasCustom := renderer.RenderConfigHTML(key, value); hasCustom {
+				// Add custom HTML fragment to the config value
 				if configMap, ok := config[key].(map[string]interface{}); ok {
-					configMap["template"] = templateName
+					configMap["custom_html"] = customHTML
 				}
 			}
 		}
