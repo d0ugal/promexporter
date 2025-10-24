@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.1](https://github.com/d0ugal/promexporter/compare/v1.3.0...v1.3.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* use concrete type check instead of interface assertion ([271b007](https://github.com/d0ugal/promexporter/commit/271b007fb44b9911ea81c1ef3350ae4980d1188f))
+* use interface method check instead of type assertion ([789c856](https://github.com/d0ugal/promexporter/commit/789c8565a5af4e3dc04f42adcae29d73d06773d7))
+
 ## [1.3.0](https://github.com/d0ugal/promexporter/compare/v1.2.0...v1.3.0) (2025-10-24)
 
 
