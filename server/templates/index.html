@@ -395,7 +395,7 @@
                 <div class="config-value {{if $value.sensitive}}sensitive{{end}}">
                     {{if $value.custom_html}}
                         {{/* Use custom HTML fragment if provided - render as HTML, not escaped */}}
-                        {{$value.custom_html | safeHTML}}
+                        {{$value.custom_html}}
                     {{else}}
                         {{/* Fallback to default formatting */}}
                         {{$value.value}}

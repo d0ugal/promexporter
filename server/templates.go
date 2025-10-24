@@ -27,4 +27,8 @@ type MetricData struct {
 	ExampleValue string
 }
 
-var mainTemplate = template.Must(template.ParseFS(templateFS, "templates/index.html"))
+var mainTemplate = template.Must(template.New("index.html").Funcs(template.FuncMap{
+	"safeHTML": func(s string) template.HTML {
+		return template.HTML(s)
+	},
+}).ParseFS(templateFS, "templates/index.html"))
