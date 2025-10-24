@@ -21,6 +21,11 @@ type ConfigInterface interface {
 	GetServer() *config.ServerConfig
 }
 
+// CustomConfigRenderer allows exporters to provide custom HTML for specific config keys
+type CustomConfigRenderer interface {
+	RenderConfigHTML(key string, value interface{}) (string, bool)
+}
+
 // Server handles HTTP requests and serves metrics
 type Server struct {
 	config  ConfigInterface
@@ -168,7 +173,7 @@ func (s *Server) handleHealth(c *gin.Context) {
 func (s *Server) getConfigData() map[string]interface{} {
 	config := s.config.GetDisplayConfig()
 
-	// Add sensitivity information to each config value
+	// Add sensitivity information and custom HTML to each config value
 	for key, value := range config {
 		// Check if the value implements SensitiveValue interface
 		if sensitiveValue, ok := value.(interface{ IsSensitive() bool }); ok && sensitiveValue.IsSensitive() {
@@ -183,6 +188,16 @@ func (s *Server) getConfigData() map[string]interface{} {
 			config[key] = map[string]interface{}{
 				"value":     value,
 				"sensitive": false,
+			}
+		}
+
+		// Check if the config implements CustomConfigRenderer
+		if renderer, ok := s.config.(CustomConfigRenderer); ok {
+			if customHTML, hasCustom := renderer.RenderConfigHTML(key, value); hasCustom {
+				// Add custom HTML to the config value
+				if configMap, ok := config[key].(map[string]interface{}); ok {
+					configMap["custom_html"] = customHTML
+				}
 			}
 		}
 	}

@@ -393,77 +393,11 @@
             <div class="config-item">
                 <div class="config-key">{{$key}}</div>
                 <div class="config-value {{if $value.sensitive}}sensitive{{end}}">
-                    {{/* Debug: Show the type of the value */}}
-                    {{/* Type: {{printf "%T" $value.value}} */}}
-                    
-                    {{if eq (printf "%T" $value.value) "[]interface {}"}}
-                        {{/* Handle arrays/slices */}}
-                        <div class="array-container">
-                            {{range $i, $item := $value.value}}
-                            <div class="array-item">
-                                <span class="array-index">[{{$i}}]</span>
-                                {{if eq (printf "%T" $item) "map[string]interface {}"}}
-                                    {{/* Handle map items */}}
-                                    <div class="object-container">
-                                        {{range $k, $v := $item}}
-                                        <div class="object-item">
-                                            <span class="object-key">{{$k}}:</span>
-                                            <span class="object-value">{{$v}}</span>
-                                        </div>
-                                        {{end}}
-                                    </div>
-                                {{else}}
-                                    {{$item}}
-                                {{end}}
-                            </div>
-                            {{end}}
-                        </div>
-                    {{else if eq (printf "%T" $value.value) "map[string]interface {}"}}
-                        {{/* Handle maps */}}
-                        <div class="object-container">
-                            {{range $k, $v := $value.value}}
-                            <div class="object-item">
-                                <span class="object-key">{{$k}}:</span>
-                                <span class="object-value">{{$v}}</span>
-                            </div>
-                            {{end}}
-                        </div>
-                    {{else if eq (printf "%T" $value.value) "[]map[string]string"}}
-                        {{/* Handle array of maps (like filesystems) */}}
-                        <div class="array-container">
-                            {{range $i, $item := $value.value}}
-                            <div class="array-item">
-                                <span class="array-index">[{{$i}}]</span>
-                                <div class="object-container">
-                                    {{range $k, $v := $item}}
-                                    <div class="object-item">
-                                        <span class="object-key">{{$k}}:</span>
-                                        <span class="object-value">{{$v}}</span>
-                                    </div>
-                                    {{end}}
-                                </div>
-                            </div>
-                            {{end}}
-                        </div>
-                    {{else if eq (printf "%T" $value.value) "map[string]map[string]interface {}"}}
-                        {{/* Handle nested maps (like directories) */}}
-                        <div class="nested-map-container">
-                            {{range $name, $config := $value.value}}
-                            <div class="nested-map-item">
-                                <span class="nested-map-key">{{$name}}:</span>
-                                <div class="object-container">
-                                    {{range $k, $v := $config}}
-                                    <div class="object-item">
-                                        <span class="object-key">{{$k}}:</span>
-                                        <span class="object-value">{{$v}}</span>
-                                    </div>
-                                    {{end}}
-                                </div>
-                            </div>
-                            {{end}}
-                        </div>
+                    {{if $value.custom_html}}
+                        {{/* Use custom HTML if provided */}}
+                        {{$value.custom_html | html}}
                     {{else}}
-                        {{/* Handle simple values */}}
+                        {{/* Fallback to default formatting */}}
                         {{$value.value}}
                     {{end}}
                 </div>
