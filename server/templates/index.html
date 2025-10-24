@@ -404,6 +404,23 @@
                             </div>
                             {{end}}
                         </div>
+                    {{else if eq (printf "%T" $value.value) "[]map[string]string"}}
+                        {{/* Handle array of maps (like filesystems) */}}
+                        <div class="array-container">
+                            {{range $i, $item := $value.value}}
+                            <div class="array-item">
+                                <span class="array-index">[{{$i}}]</span>
+                                <div class="object-container">
+                                    {{range $k, $v := $item}}
+                                    <div class="object-item">
+                                        <span class="object-key">{{$k}}:</span>
+                                        <span class="object-value">{{$v}}</span>
+                                    </div>
+                                    {{end}}
+                                </div>
+                            </div>
+                            {{end}}
+                        </div>
                     {{else}}
                         {{/* Handle simple values */}}
                         {{$value.value}}
