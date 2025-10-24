@@ -164,7 +164,26 @@ func (s *Server) handleHealth(c *gin.Context) {
 }
 
 // getConfigData returns configuration data for the template
-// Uses the BaseConfig's GetDisplayConfig method
+// Uses the BaseConfig's GetDisplayConfig method and adds sensitivity information
 func (s *Server) getConfigData() map[string]interface{} {
-	return s.config.GetDisplayConfig()
+	config := s.config.GetDisplayConfig()
+
+	// Add sensitivity information to each config value
+	for key, value := range config {
+		if sensitiveValue, ok := value.(config.SensitiveValue); ok && sensitiveValue.IsSensitive() {
+			// Wrap sensitive values with metadata
+			config[key] = map[string]interface{}{
+				"value":     value,
+				"sensitive": true,
+			}
+		} else {
+			// Wrap non-sensitive values with metadata
+			config[key] = map[string]interface{}{
+				"value":     value,
+				"sensitive": false,
+			}
+		}
+	}
+
+	return config
 }

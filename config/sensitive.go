@@ -4,6 +4,11 @@ import (
 	"encoding/json"
 )
 
+// SensitiveValue interface for types that can identify themselves as sensitive
+type SensitiveValue interface {
+	IsSensitive() bool
+}
+
 // SensitiveString represents a string value that should be treated as sensitive
 // and redacted when displayed in configuration or logs
 type SensitiveString struct {
@@ -32,6 +37,11 @@ func (s SensitiveString) Value() string {
 // IsEmpty returns true if the sensitive string is empty
 func (s SensitiveString) IsEmpty() bool {
 	return s.value == ""
+}
+
+// IsSensitive returns true to indicate this is a sensitive value
+func (s SensitiveString) IsSensitive() bool {
+	return true
 }
 
 // MarshalJSON implements json.Marshaler interface
