@@ -113,16 +113,20 @@ func (s *Server) Shutdown() error {
 }
 
 func (s *Server) setupRoutes() {
-	// Root endpoint with HTML dashboard
-	s.router.GET("/", s.handleRoot)
+	// Root endpoint with HTML dashboard (optional)
+	if s.config.GetServer().IsWebUIEnabled() {
+		s.router.GET("/", s.handleRoot)
+	}
 
 	// Metrics endpoint - use our custom registry
 	s.router.GET("/metrics", gin.WrapH(promhttp.HandlerFor(s.metrics.GetRegistry(), promhttp.HandlerOpts{
 		EnableOpenMetrics: true,
 	})))
 
-	// Health endpoint
-	s.router.GET("/health", s.handleHealth)
+	// Health endpoint (optional)
+	if s.config.GetServer().IsHealthEnabled() {
+		s.router.GET("/health", s.handleHealth)
+	}
 }
 
 func (s *Server) handleRoot(c *gin.Context) {

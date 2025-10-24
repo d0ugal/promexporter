@@ -17,8 +17,26 @@ type BaseConfig struct {
 
 // ServerConfig holds server configuration
 type ServerConfig struct {
-	Host string `yaml:"host"`
-	Port int    `yaml:"port"`
+	Host         string `yaml:"host"`
+	Port         int    `yaml:"port"`
+	EnableWebUI  *bool  `yaml:"enable_web_ui,omitempty"`  // Enable web UI (default: true)
+	EnableHealth *bool  `yaml:"enable_health,omitempty"`  // Enable health endpoint (default: true)
+}
+
+// IsWebUIEnabled returns true if web UI is enabled (defaults to true)
+func (s *ServerConfig) IsWebUIEnabled() bool {
+	if s.EnableWebUI == nil {
+		return true // default to enabled
+	}
+	return *s.EnableWebUI
+}
+
+// IsHealthEnabled returns true if health endpoint is enabled (defaults to true)
+func (s *ServerConfig) IsHealthEnabled() bool {
+	if s.EnableHealth == nil {
+		return true // default to enabled
+	}
+	return *s.EnableHealth
 }
 
 // LoggingConfig holds logging configuration
@@ -157,6 +175,10 @@ func setDefaults(config *BaseConfig) {
 		config.Server.Port = 8080
 	}
 
+	// Set default values for new options (only if not explicitly set in YAML)
+	// Note: bool fields default to false, so we need to check if they were explicitly set
+	// For now, we'll assume they default to true unless explicitly set to false
+
 	if config.Logging.Level == "" {
 		config.Logging.Level = "info"
 	}
@@ -215,10 +237,12 @@ func (c *BaseConfig) GetDefaultInterval() int {
 // This method can be overridden by exporters to include their own configuration
 func (c *BaseConfig) GetDisplayConfig() map[string]interface{} {
 	return map[string]interface{}{
-		"Server Host": c.Server.Host,
-		"Server Port": c.Server.Port,
-		"Log Level":   c.Logging.Level,
-		"Log Format":  c.Logging.Format,
+		"Server Host":     c.Server.Host,
+		"Server Port":     c.Server.Port,
+		"Web UI Enabled":  c.Server.IsWebUIEnabled(),
+		"Health Enabled":  c.Server.IsHealthEnabled(),
+		"Log Level":       c.Logging.Level,
+		"Log Format":      c.Logging.Format,
 	}
 }
 
