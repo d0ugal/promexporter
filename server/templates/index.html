@@ -257,6 +257,40 @@
             font-size: 0.9em;
         }
         
+        /* Array and Object Formatting */
+        .array-container {
+            margin-left: 1rem;
+        }
+        .array-item {
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0;
+        }
+        .array-index {
+            font-weight: 600;
+            color: #6c757d;
+            margin-right: 0.5rem;
+        }
+        .object-container {
+            margin-left: 1rem;
+            border-left: 2px solid #e9ecef;
+            padding-left: 0.5rem;
+        }
+        .object-item {
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        .object-key {
+            font-weight: 600;
+            color: #495057;
+            min-width: 120px;
+            margin-right: 0.5rem;
+        }
+        .object-value {
+            color: #6c757d;
+            word-break: break-all;
+        }
+        
         .config-value.object {
             font-family: 'Courier New', monospace;
             background: #e9ecef;
@@ -338,7 +372,42 @@
             <div class="config-item">
                 <div class="config-key">{{$key}}</div>
                 <div class="config-value {{if $value.sensitive}}sensitive{{end}}">
-                    {{$value.value}}
+                    {{if eq (printf "%T" $value.value) "[]interface {}"}}
+                        {{/* Handle arrays/slices */}}
+                        <div class="array-container">
+                            {{range $i, $item := $value.value}}
+                            <div class="array-item">
+                                <span class="array-index">[{{$i}}]</span>
+                                {{if eq (printf "%T" $item) "map[string]interface {}"}}
+                                    {{/* Handle map items */}}
+                                    <div class="object-container">
+                                        {{range $k, $v := $item}}
+                                        <div class="object-item">
+                                            <span class="object-key">{{$k}}:</span>
+                                            <span class="object-value">{{$v}}</span>
+                                        </div>
+                                        {{end}}
+                                    </div>
+                                {{else}}
+                                    {{$item}}
+                                {{end}}
+                            </div>
+                            {{end}}
+                        </div>
+                    {{else if eq (printf "%T" $value.value) "map[string]interface {}"}}
+                        {{/* Handle maps */}}
+                        <div class="object-container">
+                            {{range $k, $v := $value.value}}
+                            <div class="object-item">
+                                <span class="object-key">{{$k}}:</span>
+                                <span class="object-value">{{$v}}</span>
+                            </div>
+                            {{end}}
+                        </div>
+                    {{else}}
+                        {{/* Handle simple values */}}
+                        {{$value.value}}
+                    {{end}}
                 </div>
             </div>
             {{end}}
