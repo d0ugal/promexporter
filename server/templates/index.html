@@ -394,7 +394,7 @@
                 <div class="config-key">{{$key}}</div>
                 <div class="config-value {{if $value.sensitive}}sensitive{{end}}">
                     {{if $value.custom_html}}
-                        {{/* Use custom HTML fragment if provided - render as HTML, not escaped */}}
+                        {{/* Use custom HTML fragment if provided - already template.HTML so no escaping */}}
                         {{$value.custom_html}}
                     {{else}}
                         {{/* Fallback to default formatting */}}

@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"fmt"
+	"html/template"
 	"log/slog"
 	"net/http"
 	"time"
@@ -194,9 +195,9 @@ func (s *Server) getConfigData() map[string]interface{} {
 		// Check if the config implements CustomConfigRenderer
 		if renderer, ok := s.config.(CustomConfigRenderer); ok {
 			if customHTML, hasCustom := renderer.RenderConfigHTML(key, value); hasCustom {
-				// Add custom HTML fragment to the config value
+				// Add custom HTML fragment to the config value as template.HTML to prevent escaping
 				if configMap, ok := config[key].(map[string]interface{}); ok {
-					configMap["custom_html"] = customHTML
+					configMap["custom_html"] = template.HTML(customHTML)
 				}
 			}
 		}
