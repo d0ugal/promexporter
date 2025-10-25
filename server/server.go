@@ -200,8 +200,10 @@ func (s *Server) getConfigData() map[string]interface{} {
 		if renderer, ok := s.config.(CustomConfigRenderer); ok {
 			if customHTML, hasCustom := renderer.RenderConfigHTML(key, value); hasCustom {
 				// Add custom HTML fragment to the config value as template.HTML to prevent escaping
+				// SECURITY NOTE: This bypasses HTML escaping. The RenderConfigHTML method should only
+				// return trusted HTML content from the application's own configuration, not user input.
 				if configMap, ok := config[key].(map[string]interface{}); ok {
-					configMap["custom_html"] = template.HTML(customHTML)
+					configMap["custom_html"] = template.HTML(customHTML) //nolint:gosec // Trusted HTML from config renderer
 				}
 			}
 		}

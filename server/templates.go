@@ -29,6 +29,7 @@ type MetricData struct {
 
 var mainTemplate = template.Must(template.New("index.html").Funcs(template.FuncMap{
 	"safeHTML": func(s string) template.HTML {
-		return template.HTML(s)
+		// SECURITY NOTE: This bypasses HTML escaping. Only use with trusted content.
+		return template.HTML(s) //nolint:gosec // Template helper for trusted HTML
 	},
 }).ParseFS(templateFS, "templates/index.html"))
