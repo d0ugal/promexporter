@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.1](https://github.com/d0ugal/promexporter/compare/v1.4.0...v1.4.1) (2025-10-25)
+
+
+### Bug Fixes
+
+* linting ([c143a20](https://github.com/d0ugal/promexporter/commit/c143a20b95aa83cc87191e80922db69bf9b48e37))
+* update module github.com/prometheus/procfs to v0.19.0 ([0801fe0](https://github.com/d0ugal/promexporter/commit/0801fe08394bc4915654cf85a9c4dafde2f2a16a))
+
 ## [1.4.0](https://github.com/d0ugal/promexporter/compare/v1.3.1...v1.4.0) (2025-10-24)
 
 
