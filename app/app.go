@@ -23,11 +23,19 @@ type ConfigInterface interface {
 
 // App represents the main application
 type App struct {
-	name       string
-	config     ConfigInterface
-	metrics    *metrics.Registry
-	server     *server.Server
-	collectors []Collector
+	name        string
+	config      ConfigInterface
+	metrics     *metrics.Registry
+	server      *server.Server
+	collectors  []Collector
+	versionInfo *VersionInfo
+}
+
+// VersionInfo holds version information for the application
+type VersionInfo struct {
+	Version   string
+	Commit    string
+	BuildDate string
 }
 
 // Collector interface for data collection
@@ -61,6 +69,17 @@ func (a *App) WithCollector(collector Collector) *App {
 	return a
 }
 
+// WithVersionInfo sets custom version information for the application
+func (a *App) WithVersionInfo(version, commit, buildDate string) *App {
+	a.versionInfo = &VersionInfo{
+		Version:   version,
+		Commit:    commit,
+		BuildDate: buildDate,
+	}
+
+	return a
+}
+
 // Build finalizes the application setup
 func (a *App) Build() *App {
 	// Configure logging
@@ -71,11 +90,26 @@ func (a *App) Build() *App {
 	})
 
 	// Set version info metric
-	versionInfo := version.Get()
-	a.metrics.VersionInfo.WithLabelValues(versionInfo.Version, versionInfo.Commit, versionInfo.BuildDate).Set(1)
+	if a.versionInfo != nil {
+		// Use custom version info if provided
+		a.metrics.VersionInfo.WithLabelValues(a.versionInfo.Version, a.versionInfo.Commit, a.versionInfo.BuildDate).Set(1)
+	} else {
+		// Fall back to default version info
+		slog.Warn("No custom version info provided, falling back to build defaults")
+		versionInfo := version.Get()
+		a.metrics.VersionInfo.WithLabelValues(versionInfo.Version, versionInfo.Commit, versionInfo.BuildDate).Set(1)
+	}
 
 	// Create server
-	a.server = server.New(a.config, a.metrics, a.name)
+	var serverVersionInfo *version.Info
+	if a.versionInfo != nil {
+		serverVersionInfo = &version.Info{
+			Version:   a.versionInfo.Version,
+			Commit:    a.versionInfo.Commit,
+			BuildDate: a.versionInfo.BuildDate,
+		}
+	}
+	a.server = server.New(a.config, a.metrics, a.name, serverVersionInfo)
 
 	return a
 }
