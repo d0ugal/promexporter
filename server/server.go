@@ -29,15 +29,16 @@ type CustomConfigRenderer interface {
 
 // Server handles HTTP requests and serves metrics
 type Server struct {
-	config  ConfigInterface
-	metrics *metrics.Registry
-	server  *http.Server
-	router  *gin.Engine
-	name    string
+	config      ConfigInterface
+	metrics     *metrics.Registry
+	server      *http.Server
+	router      *gin.Engine
+	name        string
+	versionInfo *version.Info
 }
 
 // New creates a new server instance
-func New(cfg ConfigInterface, metricsRegistry *metrics.Registry, exporterName string) *Server {
+func New(cfg ConfigInterface, metricsRegistry *metrics.Registry, exporterName string, customVersionInfo *version.Info) *Server {
 	// Set Gin to release mode unless debug logging is enabled
 	loggingConfig := cfg.GetLogging()
 	if loggingConfig.Level != "debug" {
@@ -48,10 +49,11 @@ func New(cfg ConfigInterface, metricsRegistry *metrics.Registry, exporterName st
 	router.Use(customGinLogger(), gin.Recovery())
 
 	server := &Server{
-		config:  cfg,
-		metrics: metricsRegistry,
-		router:  router,
-		name:    exporterName,
+		config:      cfg,
+		metrics:     metricsRegistry,
+		router:      router,
+		name:        exporterName,
+		versionInfo: customVersionInfo,
 	}
 
 	server.setupRoutes()
@@ -130,7 +132,13 @@ func (s *Server) setupRoutes() {
 }
 
 func (s *Server) handleRoot(c *gin.Context) {
-	versionInfo := version.Get()
+	var versionInfo *version.Info
+	if s.versionInfo != nil {
+		versionInfo = s.versionInfo
+	} else {
+		defaultVersion := version.Get()
+		versionInfo = &defaultVersion
+	}
 	metricsInfo := s.metrics.GetMetricsInfo()
 
 	// Convert metrics to template data
