@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/d0ugal/promexporter/compare/v1.5.1...v1.5.2) (2025-10-26)
+
+
+### Bug Fixes
+
+* **lint:** update golangci-lint config to use wsl_v5 instead of deprecated wsl ([edbfe99](https://github.com/d0ugal/promexporter/commit/edbfe999e4e88961e1ac00d01c21c54fb0a5a667))
+
 ## [1.5.1](https://github.com/d0ugal/promexporter/compare/v1.5.0...v1.5.1) (2025-10-26)
 
 
