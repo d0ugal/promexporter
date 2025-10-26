@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/d0ugal/promexporter/compare/v1.5.0...v1.5.1) (2025-10-26)
+
+
+### Bug Fixes
+
+* pass custom version info to web UI ([4ab394f](https://github.com/d0ugal/promexporter/commit/4ab394f8c54c1b0129dd9dd391cda148bfada4cd))
+
 ## [1.5.0](https://github.com/d0ugal/promexporter/compare/v1.4.1...v1.5.0) (2025-10-26)
 
 
