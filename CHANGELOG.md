@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.0](https://github.com/d0ugal/promexporter/compare/v1.4.1...v1.5.0) (2025-10-26)
+
+
+### Features
+
+* add SkipVersionInfo option to disable automatic version info setting ([8bcc33f](https://github.com/d0ugal/promexporter/commit/8bcc33f96a76de138c149993165f83b0207de0a6))
+* add WithVersionInfo method to accept custom version information ([bab712c](https://github.com/d0ugal/promexporter/commit/bab712c0c0a80078aabc76e9939c3bed4ba462b7))
+
+
+### Bug Fixes
+
+* Add a warning log when falling back ([0eefae5](https://github.com/d0ugal/promexporter/commit/0eefae5d9c7fedd644645046fa2790c3b1593d60))
+* linting ([f06e445](https://github.com/d0ugal/promexporter/commit/f06e44502f22f37fbb829bc83e11eac4b7605eea))
+* resolve CI linting issues ([6a58262](https://github.com/d0ugal/promexporter/commit/6a5826289f85f8749341b1e70bc12c2b591dc9d9))
+* update module github.com/prometheus/procfs to v0.19.1 ([c7ccb84](https://github.com/d0ugal/promexporter/commit/c7ccb84b69ba5a08c0b837c5c77c6820107518c3))
+
 ## [1.4.1](https://github.com/d0ugal/promexporter/compare/v1.4.0...v1.4.1) (2025-10-25)
 
 
