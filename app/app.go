@@ -23,12 +23,12 @@ type ConfigInterface interface {
 
 // App represents the main application
 type App struct {
-	name                string
-	config              ConfigInterface
-	metrics             *metrics.Registry
-	server              *server.Server
-	collectors          []Collector
-	versionInfo         *VersionInfo
+	name        string
+	config      ConfigInterface
+	metrics     *metrics.Registry
+	server      *server.Server
+	collectors  []Collector
+	versionInfo *VersionInfo
 }
 
 // VersionInfo holds version information for the application
@@ -76,6 +76,7 @@ func (a *App) WithVersionInfo(version, commit, buildDate string) *App {
 		Commit:    commit,
 		BuildDate: buildDate,
 	}
+
 	return a
 }
 
