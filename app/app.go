@@ -101,7 +101,15 @@ func (a *App) Build() *App {
 	}
 
 	// Create server
-	a.server = server.New(a.config, a.metrics, a.name)
+	var serverVersionInfo *version.Info
+	if a.versionInfo != nil {
+		serverVersionInfo = &version.Info{
+			Version:   a.versionInfo.Version,
+			Commit:    a.versionInfo.Commit,
+			BuildDate: a.versionInfo.BuildDate,
+		}
+	}
+	a.server = server.New(a.config, a.metrics, a.name, serverVersionInfo)
 
 	return a
 }
