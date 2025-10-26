@@ -95,6 +95,7 @@ func (a *App) Build() *App {
 		a.metrics.VersionInfo.WithLabelValues(a.versionInfo.Version, a.versionInfo.Commit, a.versionInfo.BuildDate).Set(1)
 	} else {
 		// Fall back to default version info
+		slog.Warn("No custom version info provided, falling back to build defaults")
 		versionInfo := version.Get()
 		a.metrics.VersionInfo.WithLabelValues(versionInfo.Version, versionInfo.Commit, versionInfo.BuildDate).Set(1)
 	}
