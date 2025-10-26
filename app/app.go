@@ -96,6 +96,7 @@ func (a *App) Build() *App {
 	} else {
 		// Fall back to default version info
 		slog.Warn("No custom version info provided, falling back to build defaults")
+
 		versionInfo := version.Get()
 		a.metrics.VersionInfo.WithLabelValues(versionInfo.Version, versionInfo.Commit, versionInfo.BuildDate).Set(1)
 	}
@@ -109,6 +110,7 @@ func (a *App) Build() *App {
 			BuildDate: a.versionInfo.BuildDate,
 		}
 	}
+
 	a.server = server.New(a.config, a.metrics, a.name, serverVersionInfo)
 
 	return a

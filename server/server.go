@@ -139,6 +139,7 @@ func (s *Server) handleRoot(c *gin.Context) {
 		defaultVersion := version.Get()
 		versionInfo = &defaultVersion
 	}
+
 	metricsInfo := s.metrics.GetMetricsInfo()
 
 	// Convert metrics to template data

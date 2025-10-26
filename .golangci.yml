@@ -13,7 +13,7 @@ linters:
     - gosec
     - ineffassign
     - unused
-    - wsl
+    - wsl_v5
     - contextcheck
     - staticcheck
     
@@ -38,6 +38,7 @@ linters:
     - tagliatelle  # YAML tags fine
     - testpackage  # Allow test packages
     - varnamelen  # Variable names fine
+    - wsl  # Deprecated, using wsl_v5 instead
 
   settings:
     gosec:
