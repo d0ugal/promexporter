@@ -23,11 +23,12 @@ type ConfigInterface interface {
 
 // App represents the main application
 type App struct {
-	name       string
-	config     ConfigInterface
-	metrics    *metrics.Registry
-	server     *server.Server
-	collectors []Collector
+	name                string
+	config              ConfigInterface
+	metrics             *metrics.Registry
+	server              *server.Server
+	collectors          []Collector
+	skipVersionInfo     bool
 }
 
 // Collector interface for data collection
@@ -61,6 +62,12 @@ func (a *App) WithCollector(collector Collector) *App {
 	return a
 }
 
+// SkipVersionInfo disables automatic version info metric setting
+func (a *App) SkipVersionInfo() *App {
+	a.skipVersionInfo = true
+	return a
+}
+
 // Build finalizes the application setup
 func (a *App) Build() *App {
 	// Configure logging
@@ -70,9 +77,11 @@ func (a *App) Build() *App {
 		Format: loggingConfig.Format,
 	})
 
-	// Set version info metric
-	versionInfo := version.Get()
-	a.metrics.VersionInfo.WithLabelValues(versionInfo.Version, versionInfo.Commit, versionInfo.BuildDate).Set(1)
+	// Set version info metric (unless skipped)
+	if !a.skipVersionInfo {
+		versionInfo := version.Get()
+		a.metrics.VersionInfo.WithLabelValues(versionInfo.Version, versionInfo.Commit, versionInfo.BuildDate).Set(1)
+	}
 
 	// Create server
 	a.server = server.New(a.config, a.metrics, a.name)
