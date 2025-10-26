@@ -28,7 +28,14 @@ type App struct {
 	metrics             *metrics.Registry
 	server              *server.Server
 	collectors          []Collector
-	skipVersionInfo     bool
+	versionInfo         *VersionInfo
+}
+
+// VersionInfo holds version information for the application
+type VersionInfo struct {
+	Version   string
+	Commit    string
+	BuildDate string
 }
 
 // Collector interface for data collection
@@ -62,9 +69,13 @@ func (a *App) WithCollector(collector Collector) *App {
 	return a
 }
 
-// SkipVersionInfo disables automatic version info metric setting
-func (a *App) SkipVersionInfo() *App {
-	a.skipVersionInfo = true
+// WithVersionInfo sets custom version information for the application
+func (a *App) WithVersionInfo(version, commit, buildDate string) *App {
+	a.versionInfo = &VersionInfo{
+		Version:   version,
+		Commit:    commit,
+		BuildDate: buildDate,
+	}
 	return a
 }
 
@@ -77,8 +88,12 @@ func (a *App) Build() *App {
 		Format: loggingConfig.Format,
 	})
 
-	// Set version info metric (unless skipped)
-	if !a.skipVersionInfo {
+	// Set version info metric
+	if a.versionInfo != nil {
+		// Use custom version info if provided
+		a.metrics.VersionInfo.WithLabelValues(a.versionInfo.Version, a.versionInfo.Commit, a.versionInfo.BuildDate).Set(1)
+	} else {
+		// Fall back to default version info
 		versionInfo := version.Get()
 		a.metrics.VersionInfo.WithLabelValues(versionInfo.Version, versionInfo.Commit, versionInfo.BuildDate).Set(1)
 	}
