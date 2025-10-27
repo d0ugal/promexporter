@@ -12,6 +12,7 @@ import (
 	"github.com/d0ugal/promexporter/metrics"
 	"github.com/d0ugal/promexporter/server"
 	"github.com/d0ugal/promexporter/version"
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 // ConfigInterface defines the interface that configuration types must implement
@@ -92,13 +93,21 @@ func (a *App) Build() *App {
 	// Set version info metric
 	if a.versionInfo != nil {
 		// Use custom version info if provided
-		a.metrics.VersionInfo.WithLabelValues(a.versionInfo.Version, a.versionInfo.Commit, a.versionInfo.BuildDate).Set(1)
+		a.metrics.VersionInfo.With(prometheus.Labels{
+			"version":    a.versionInfo.Version,
+			"commit":     a.versionInfo.Commit,
+			"build_date": a.versionInfo.BuildDate,
+		}).Set(1)
 	} else {
 		// Fall back to default version info
 		slog.Warn("No custom version info provided, falling back to build defaults")
 
 		versionInfo := version.Get()
-		a.metrics.VersionInfo.WithLabelValues(versionInfo.Version, versionInfo.Commit, versionInfo.BuildDate).Set(1)
+		a.metrics.VersionInfo.With(prometheus.Labels{
+			"version":    versionInfo.Version,
+			"commit":     versionInfo.Commit,
+			"build_date": versionInfo.BuildDate,
+		}).Set(1)
 	}
 
 	// Create server
