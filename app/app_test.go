@@ -33,6 +33,7 @@ func (m *mockConfig) GetTracing() *config.TracingConfig {
 	if m.tracing == nil {
 		return &config.TracingConfig{}
 	}
+
 	return m.tracing
 }
 
