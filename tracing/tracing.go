@@ -26,43 +26,43 @@ type Tracer struct {
 
 // NewTracer creates a new tracer instance with the given configuration
 func NewTracer(cfg *config.TracingConfig) (*Tracer, error) {
-	slog.Debug("NewTracer called", 
+	slog.Debug("NewTracer called",
 		"enabled", cfg.IsEnabled(),
 		"service_name", cfg.ServiceName,
 		"endpoint", cfg.Endpoint,
 		"headers", cfg.Headers,
 	)
-	
+
 	if !cfg.IsEnabled() {
 		slog.Debug("Tracing disabled, returning empty tracer")
 		return &Tracer{}, nil
 	}
 
 	slog.Debug("Creating OTLP HTTP exporter", "endpoint", cfg.Endpoint)
-	
+
 	// Parse and validate the endpoint URL
 	endpointURL, err := url.Parse(cfg.Endpoint)
 	if err != nil {
 		slog.Error("Invalid endpoint URL", "error", err, "endpoint", cfg.Endpoint)
 		return nil, fmt.Errorf("invalid endpoint URL: %w", err)
 	}
-	
-	slog.Debug("Parsed endpoint URL", 
+
+	slog.Debug("Parsed endpoint URL",
 		"scheme", endpointURL.Scheme,
 		"host", endpointURL.Host,
 		"path", endpointURL.Path,
 	)
-	
+
 	// OTLP HTTP exporter expects just the host:port, not the full URL
 	// We need to construct the proper endpoint format
-	slog.Debug("Creating OTLP exporter with parsed components", 
+	slog.Debug("Creating OTLP exporter with parsed components",
 		"host", endpointURL.Host,
 		"path", endpointURL.Path,
 		"scheme", endpointURL.Scheme,
 	)
-	
+
 	var exporter sdktrace.SpanExporter
-	
+
 	if endpointURL.Scheme == "https" {
 		exporter, err = otlptracehttp.New(
 			context.Background(),
@@ -80,16 +80,17 @@ func NewTracer(cfg *config.TracingConfig) (*Tracer, error) {
 			otlptracehttp.WithInsecure(),
 		)
 	}
-	
+
 	if err != nil {
 		slog.Error("Failed to create OTLP exporter", "error", err, "endpoint", cfg.Endpoint)
 		return nil, fmt.Errorf("failed to create OTLP exporter: %w", err)
 	}
-	
+
 	slog.Debug("OTLP HTTP exporter created successfully")
 
 	// Create resource with service information
 	slog.Debug("Creating resource", "service_name", cfg.ServiceName)
+
 	res, err := resource.New(
 		context.Background(),
 		resource.WithAttributes(
@@ -101,17 +102,18 @@ func NewTracer(cfg *config.TracingConfig) (*Tracer, error) {
 		slog.Error("Failed to create resource", "error", err)
 		return nil, fmt.Errorf("failed to create resource: %w", err)
 	}
-	
+
 	slog.Debug("Resource created successfully")
 
 	// Create trace provider
 	slog.Debug("Creating trace provider")
+
 	tp := sdktrace.NewTracerProvider(
 		sdktrace.WithBatcher(exporter),
 		sdktrace.WithResource(res),
 		sdktrace.WithSampler(sdktrace.AlwaysSample()), // Could be made configurable
 	)
-	
+
 	slog.Debug("Trace provider created successfully")
 
 	// Set global trace provider
@@ -129,7 +131,7 @@ func NewTracer(cfg *config.TracingConfig) (*Tracer, error) {
 	slog.Debug("Creating tracer", "service_name", cfg.ServiceName)
 	tracer := tp.Tracer(cfg.ServiceName)
 
-	slog.Info("Tracing initialized", 
+	slog.Info("Tracing initialized",
 		"service_name", cfg.ServiceName,
 		"endpoint", cfg.Endpoint,
 	)
@@ -191,23 +193,24 @@ func RecordSpanError(ctx context.Context, err error, attrs ...attribute.KeyValue
 // HTTPMiddleware creates a Gin middleware for HTTP request tracing
 func (t *Tracer) HTTPMiddleware() func(c *gin.Context) {
 	slog.Debug("HTTPMiddleware called", "enabled", t.IsEnabled())
-	
+
 	if !t.IsEnabled() {
 		slog.Debug("Tracing disabled, returning no-op middleware")
+
 		return func(c *gin.Context) {
 			c.Next()
 		}
 	}
 
 	slog.Debug("Creating HTTP tracing middleware")
-	
+
 	return func(c *gin.Context) {
-		slog.Debug("Processing HTTP request", 
+		slog.Debug("Processing HTTP request",
 			"method", c.Request.Method,
 			"path", c.Request.URL.Path,
 			"url", c.Request.URL.String(),
 		)
-		
+
 		// Extract trace context from headers
 		ctx := otel.GetTextMapPropagator().Extract(c.Request.Context(), propagation.HeaderCarrier(c.Request.Header))
 
@@ -219,7 +222,7 @@ func (t *Tracer) HTTPMiddleware() func(c *gin.Context) {
 			attribute.String("http.user_agent", c.Request.UserAgent()),
 		)
 
-		slog.Debug("HTTP span created", 
+		slog.Debug("HTTP span created",
 			"span_name", spanName,
 			"span_id", span.SpanContext().SpanID().String(),
 			"trace_id", span.SpanContext().TraceID().String(),
@@ -236,7 +239,7 @@ func (t *Tracer) HTTPMiddleware() func(c *gin.Context) {
 			attribute.Int("http.status_code", c.Writer.Status()),
 		)
 
-		slog.Debug("HTTP request completed", 
+		slog.Debug("HTTP request completed",
 			"status_code", c.Writer.Status(),
 			"span_id", span.SpanContext().SpanID().String(),
 			"trace_id", span.SpanContext().TraceID().String(),
@@ -256,7 +259,7 @@ func (t *Tracer) HTTPMiddleware() func(c *gin.Context) {
 // Shutdown gracefully shuts down the tracer
 func (t *Tracer) Shutdown(ctx context.Context) error {
 	slog.Debug("Tracer shutdown called", "enabled", t.IsEnabled())
-	
+
 	if !t.IsEnabled() {
 		slog.Debug("Tracing disabled, skipping shutdown")
 		return nil
@@ -265,16 +268,19 @@ func (t *Tracer) Shutdown(ctx context.Context) error {
 	tp := otel.GetTracerProvider()
 	if sdkTp, ok := tp.(*sdktrace.TracerProvider); ok {
 		slog.Debug("Shutting down SDK trace provider")
+
 		err := sdkTp.Shutdown(ctx)
 		if err != nil {
 			slog.Error("Error during tracer shutdown", "error", err)
 		} else {
 			slog.Debug("Tracer shutdown completed successfully")
 		}
+
 		return err
 	}
 
 	slog.Debug("No SDK trace provider found, skipping shutdown")
+
 	return nil
 }
 
@@ -286,29 +292,29 @@ type CollectorSpan struct {
 
 // NewCollectorSpan creates a new collector span
 func (t *Tracer) NewCollectorSpan(ctx context.Context, collectorName, operation string) *CollectorSpan {
-	slog.Debug("NewCollectorSpan called", 
+	slog.Debug("NewCollectorSpan called",
 		"enabled", t.IsEnabled(),
 		"collector_name", collectorName,
 		"operation", operation,
 	)
-	
+
 	if !t.IsEnabled() {
 		slog.Debug("Tracing disabled, returning empty collector span")
 		return &CollectorSpan{ctx: ctx}
 	}
 
-	slog.Debug("Creating collector span", 
+	slog.Debug("Creating collector span",
 		"collector_name", collectorName,
 		"operation", operation,
 	)
-	
+
 	ctx, span := t.StartSpanWithAttributes(ctx, operation,
 		attribute.String("service.name", t.config.ServiceName),
 		attribute.String("collector.name", collectorName),
 		attribute.String("collector.operation", operation),
 	)
 
-	slog.Debug("Collector span created successfully", 
+	slog.Debug("Collector span created successfully",
 		"span_id", span.SpanContext().SpanID().String(),
 		"trace_id", span.SpanContext().TraceID().String(),
 	)
@@ -327,7 +333,7 @@ func (cs *CollectorSpan) Context() context.Context {
 // End ends the span
 func (cs *CollectorSpan) End() {
 	if cs.span != nil && cs.span.IsRecording() {
-		slog.Debug("Ending collector span", 
+		slog.Debug("Ending collector span",
 			"span_id", cs.span.SpanContext().SpanID().String(),
 			"trace_id", cs.span.SpanContext().TraceID().String(),
 		)
@@ -355,7 +361,7 @@ func (cs *CollectorSpan) SetAttributes(attrs ...attribute.KeyValue) {
 // AddEvent adds an event to the span
 func (cs *CollectorSpan) AddEvent(name string, attrs ...attribute.KeyValue) {
 	if cs.span != nil && cs.span.IsRecording() {
-		slog.Debug("Adding event to collector span", 
+		slog.Debug("Adding event to collector span",
 			"event_name", name,
 			"span_id", cs.span.SpanContext().SpanID().String(),
 			"trace_id", cs.span.SpanContext().TraceID().String(),

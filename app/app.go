@@ -108,6 +108,7 @@ func (a *App) Build() *App {
 			// Continue without tracing rather than failing
 		} else {
 			a.tracer = tracer
+
 			slog.Info("Tracing enabled", "service_name", tracingConfig.ServiceName)
 		}
 	}
@@ -175,6 +176,7 @@ func (a *App) Run() error {
 		if a.tracer != nil {
 			shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 5*time.Second)
 			defer shutdownCancel()
+
 			if err := a.tracer.Shutdown(shutdownCtx); err != nil {
 				slog.Error("Failed to shutdown tracing gracefully", "error", err)
 			}

@@ -49,12 +49,12 @@ func New(cfg ConfigInterface, metricsRegistry *metrics.Registry, exporterName st
 	}
 
 	router := gin.New()
-	
+
 	// Add tracing middleware if tracer is available
 	if tracer != nil && tracer.IsEnabled() {
 		router.Use(tracer.HTTPMiddleware())
 	}
-	
+
 	router.Use(customGinLogger(), gin.Recovery())
 
 	server := &Server{
