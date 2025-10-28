@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.6.0](https://github.com/d0ugal/promexporter/compare/v1.5.1...v1.6.0) (2025-10-28)
+
+
+### Features
+
+* add dev-tag Makefile target ([b0071ba](https://github.com/d0ugal/promexporter/commit/b0071bad111ebd90c36c9dd322a4f788e29e6011))
+* add OpenTelemetry tracing support ([5fd046c](https://github.com/d0ugal/promexporter/commit/5fd046c95182c23f207cd78fa2e20e3671a9e2a1))
+
+
+### Bug Fixes
+
+* **lint:** update golangci-lint config to use wsl_v5 instead of deprecated wsl ([edbfe99](https://github.com/d0ugal/promexporter/commit/edbfe999e4e88961e1ac00d01c21c54fb0a5a667))
+* resolve linting issues ([76a15d7](https://github.com/d0ugal/promexporter/commit/76a15d721844c4b91aaf5628914678b7da37f135))
+* **tracing:** correct OTLP endpoint URL handling ([ac677d0](https://github.com/d0ugal/promexporter/commit/ac677d02fdeb4752192b3351eb5045ab9d8f5698))
+* update google.golang.org/genproto/googleapis/api digest to 3a174f9 ([92ecf70](https://github.com/d0ugal/promexporter/commit/92ecf7042d2e67b27b16243927ed85b1c0907d06))
+* update google.golang.org/genproto/googleapis/rpc digest to 3a174f9 ([3160235](https://github.com/d0ugal/promexporter/commit/316023543bb02acbdb40d86c1cd368f0cd945738))
+* update module github.com/bytedance/sonic to v1.14.2 ([9701c42](https://github.com/d0ugal/promexporter/commit/9701c42234661b985a4ff966f64c7c4535292af4))
+* update module github.com/cenkalti/backoff/v4 to v5 ([318efac](https://github.com/d0ugal/promexporter/commit/318efac2d02b54662fad6e9c569073cbbac85033))
+* update module github.com/grpc-ecosystem/grpc-gateway/v2 to v2.27.3 ([8e4e3d8](https://github.com/d0ugal/promexporter/commit/8e4e3d889bb2971e03b3f32fa7ad042e40f42d98))
+* update module github.com/prometheus/common to v0.67.2 ([4345424](https://github.com/d0ugal/promexporter/commit/4345424c7d1fd39773969c9253aaf1b0b22d6ba8))
+* update module github.com/ugorji/go/codec to v1.3.1 ([f8c4ac9](https://github.com/d0ugal/promexporter/commit/f8c4ac953b23a56d659f6d94ceba9a57011e786e))
+
 ## [1.5.1](https://github.com/d0ugal/promexporter/compare/v1.5.0...v1.5.1) (2025-10-26)
 
 
