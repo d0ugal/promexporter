@@ -10,6 +10,7 @@ import (
 
 	"github.com/d0ugal/promexporter/config"
 	"github.com/d0ugal/promexporter/metrics"
+	"github.com/d0ugal/promexporter/tracing"
 	"github.com/d0ugal/promexporter/version"
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -20,6 +21,7 @@ type ConfigInterface interface {
 	GetDisplayConfig() map[string]interface{}
 	GetLogging() *config.LoggingConfig
 	GetServer() *config.ServerConfig
+	GetTracing() *config.TracingConfig
 }
 
 // CustomConfigRenderer allows exporters to provide custom HTML fragments for specific config keys
@@ -35,10 +37,11 @@ type Server struct {
 	router      *gin.Engine
 	name        string
 	versionInfo *version.Info
+	tracer      *tracing.Tracer
 }
 
 // New creates a new server instance
-func New(cfg ConfigInterface, metricsRegistry *metrics.Registry, exporterName string, customVersionInfo *version.Info) *Server {
+func New(cfg ConfigInterface, metricsRegistry *metrics.Registry, exporterName string, customVersionInfo *version.Info, tracer *tracing.Tracer) *Server {
 	// Set Gin to release mode unless debug logging is enabled
 	loggingConfig := cfg.GetLogging()
 	if loggingConfig.Level != "debug" {
@@ -46,6 +49,12 @@ func New(cfg ConfigInterface, metricsRegistry *metrics.Registry, exporterName st
 	}
 
 	router := gin.New()
+	
+	// Add tracing middleware if tracer is available
+	if tracer != nil && tracer.IsEnabled() {
+		router.Use(tracer.HTTPMiddleware())
+	}
+	
 	router.Use(customGinLogger(), gin.Recovery())
 
 	server := &Server{
@@ -54,6 +63,7 @@ func New(cfg ConfigInterface, metricsRegistry *metrics.Registry, exporterName st
 		router:      router,
 		name:        exporterName,
 		versionInfo: customVersionInfo,
+		tracer:      tracer,
 	}
 
 	server.setupRoutes()

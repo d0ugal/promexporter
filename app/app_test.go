@@ -14,6 +14,7 @@ import (
 type mockConfig struct {
 	logging *config.LoggingConfig
 	server  *config.ServerConfig
+	tracing *config.TracingConfig
 }
 
 func (m *mockConfig) GetDisplayConfig() map[string]interface{} {
@@ -26,6 +27,13 @@ func (m *mockConfig) GetLogging() *config.LoggingConfig {
 
 func (m *mockConfig) GetServer() *config.ServerConfig {
 	return m.server
+}
+
+func (m *mockConfig) GetTracing() *config.TracingConfig {
+	if m.tracing == nil {
+		return &config.TracingConfig{}
+	}
+	return m.tracing
 }
 
 func TestWithVersionInfo(t *testing.T) {
