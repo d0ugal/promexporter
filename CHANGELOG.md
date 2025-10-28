@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.6.1](https://github.com/d0ugal/promexporter/compare/v1.6.0...v1.6.1) (2025-10-28)
+
+
+### Bug Fixes
+
+* update module go.opentelemetry.io/auto/sdk to v1.2.1 ([cab19aa](https://github.com/d0ugal/promexporter/commit/cab19aa72409e6d4e93a9006afe2881c96136229))
+* update module go.opentelemetry.io/proto/otlp to v1.8.0 ([2044b49](https://github.com/d0ugal/promexporter/commit/2044b4980726e8cd2ce2106387bdabe9c4cb9223))
+* update module google.golang.org/grpc to v1.76.0 ([43b159e](https://github.com/d0ugal/promexporter/commit/43b159e023df56746acf445952394dabc4f5d8c7))
+* update opentelemetry-go monorepo to v1.38.0 ([8ef3044](https://github.com/d0ugal/promexporter/commit/8ef3044cd9b484d7fbede726f86eef04d5b23bbb))
+
 ## [1.6.0](https://github.com/d0ugal/promexporter/compare/v1.5.1...v1.6.0) (2025-10-28)
 
 
