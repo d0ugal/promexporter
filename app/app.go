@@ -6,11 +6,13 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/d0ugal/promexporter/config"
 	"github.com/d0ugal/promexporter/logging"
 	"github.com/d0ugal/promexporter/metrics"
 	"github.com/d0ugal/promexporter/server"
+	"github.com/d0ugal/promexporter/tracing"
 	"github.com/d0ugal/promexporter/version"
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -20,6 +22,7 @@ type ConfigInterface interface {
 	GetDisplayConfig() map[string]interface{}
 	GetLogging() *config.LoggingConfig
 	GetServer() *config.ServerConfig
+	GetTracing() *config.TracingConfig
 }
 
 // App represents the main application
@@ -30,6 +33,7 @@ type App struct {
 	server      *server.Server
 	collectors  []Collector
 	versionInfo *VersionInfo
+	tracer      *tracing.Tracer
 }
 
 // VersionInfo holds version information for the application
@@ -81,6 +85,11 @@ func (a *App) WithVersionInfo(version, commit, buildDate string) *App {
 	return a
 }
 
+// GetTracer returns the tracer instance (may be nil if tracing is disabled)
+func (a *App) GetTracer() *tracing.Tracer {
+	return a.tracer
+}
+
 // Build finalizes the application setup
 func (a *App) Build() *App {
 	// Configure logging
@@ -89,6 +98,19 @@ func (a *App) Build() *App {
 		Level:  loggingConfig.Level,
 		Format: loggingConfig.Format,
 	})
+
+	// Initialize tracing
+	tracingConfig := a.config.GetTracing()
+	if tracingConfig.IsEnabled() {
+		tracer, err := tracing.NewTracer(tracingConfig)
+		if err != nil {
+			slog.Error("Failed to initialize tracing", "error", err)
+			// Continue without tracing rather than failing
+		} else {
+			a.tracer = tracer
+			slog.Info("Tracing enabled", "service_name", tracingConfig.ServiceName)
+		}
+	}
 
 	// Set version info metric
 	if a.versionInfo != nil {
@@ -120,7 +142,7 @@ func (a *App) Build() *App {
 		}
 	}
 
-	a.server = server.New(a.config, a.metrics, a.name, serverVersionInfo)
+	a.server = server.New(a.config, a.metrics, a.name, serverVersionInfo, a.tracer)
 
 	return a
 }
@@ -147,6 +169,15 @@ func (a *App) Run() error {
 		// Stop collectors
 		for _, collector := range a.collectors {
 			collector.Stop()
+		}
+
+		// Shutdown tracing
+		if a.tracer != nil {
+			shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 5*time.Second)
+			defer shutdownCancel()
+			if err := a.tracer.Shutdown(shutdownCtx); err != nil {
+				slog.Error("Failed to shutdown tracing gracefully", "error", err)
+			}
 		}
 
 		// Shutdown server

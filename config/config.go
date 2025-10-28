@@ -13,6 +13,7 @@ type BaseConfig struct {
 	Server  ServerConfig  `yaml:"server"`
 	Logging LoggingConfig `yaml:"logging"`
 	Metrics MetricsConfig `yaml:"metrics"`
+	Tracing TracingConfig `yaml:"tracing"`
 }
 
 // ServerConfig holds server configuration
@@ -41,6 +42,15 @@ func (s *ServerConfig) IsHealthEnabled() bool {
 	return *s.EnableHealth
 }
 
+// IsEnabled returns true if tracing is enabled (defaults to false)
+func (t *TracingConfig) IsEnabled() bool {
+	if t.Enabled == nil {
+		return false // default to disabled
+	}
+
+	return *t.Enabled
+}
+
 // LoggingConfig holds logging configuration
 type LoggingConfig struct {
 	Level  string `yaml:"level"`
@@ -57,6 +67,14 @@ type CollectionConfig struct {
 	DefaultInterval Duration `yaml:"default_interval"`
 	// Track if the value was explicitly set
 	DefaultIntervalSet bool `yaml:"-"`
+}
+
+// TracingConfig holds tracing configuration
+type TracingConfig struct {
+	Enabled     *bool             `yaml:"enabled,omitempty"` // Enable tracing (default: false)
+	ServiceName string            `yaml:"service_name"`      // Service name for traces
+	Endpoint    string            `yaml:"endpoint"`          // OTLP endpoint (default: "http://localhost:4318/v1/traces")
+	Headers     map[string]string `yaml:"headers"`           // Additional headers for OTLP
 }
 
 // UnmarshalYAML implements custom unmarshaling to track if the value was set
@@ -156,6 +174,23 @@ func loadFromEnv() (*BaseConfig, error) {
 		config.Metrics.Collection.DefaultInterval = Duration{time.Second * 30}
 	}
 
+	// Tracing configuration
+	if enabledStr := os.Getenv("TRACING_ENABLED"); enabledStr != "" {
+		if enabled, err := parseBool(enabledStr); err != nil {
+			return nil, fmt.Errorf("invalid tracing enabled value: %w", err)
+		} else {
+			config.Tracing.Enabled = &enabled
+		}
+	}
+
+	if serviceName := os.Getenv("TRACING_SERVICE_NAME"); serviceName != "" {
+		config.Tracing.ServiceName = serviceName
+	}
+
+	if endpoint := os.Getenv("TRACING_ENDPOINT"); endpoint != "" {
+		config.Tracing.Endpoint = endpoint
+	}
+
 	// Set defaults for any missing values
 	setDefaults(config)
 
@@ -192,6 +227,19 @@ func setDefaults(config *BaseConfig) {
 	if !config.Metrics.Collection.DefaultIntervalSet {
 		config.Metrics.Collection.DefaultInterval = Duration{time.Second * 30}
 	}
+
+	// Tracing defaults
+	if config.Tracing.ServiceName == "" {
+		config.Tracing.ServiceName = "promexporter"
+	}
+
+	if config.Tracing.Endpoint == "" {
+		config.Tracing.Endpoint = ""
+	}
+
+	if config.Tracing.Headers == nil {
+		config.Tracing.Headers = make(map[string]string)
+	}
 }
 
 // parseInt parses a string to int
@@ -208,6 +256,18 @@ func parseInt(s string) (int, error) {
 	}
 
 	return i, nil
+}
+
+// parseBool parses a string to bool
+func parseBool(s string) (bool, error) {
+	switch s {
+	case "true", "1", "yes", "on":
+		return true, nil
+	case "false", "0", "no", "off":
+		return false, nil
+	default:
+		return false, fmt.Errorf("invalid boolean value: %s", s)
+	}
 }
 
 // Validate performs comprehensive validation of the configuration
@@ -227,6 +287,11 @@ func (c *BaseConfig) Validate() error {
 		return fmt.Errorf("metrics config: %w", err)
 	}
 
+	// Validate tracing configuration
+	if err := c.validateTracingConfig(); err != nil {
+		return fmt.Errorf("tracing config: %w", err)
+	}
+
 	return nil
 }
 
@@ -238,7 +303,7 @@ func (c *BaseConfig) GetDefaultInterval() int {
 // GetDisplayConfig returns configuration data safe for display
 // This method can be overridden by exporters to include their own configuration
 func (c *BaseConfig) GetDisplayConfig() map[string]interface{} {
-	return map[string]interface{}{
+	config := map[string]interface{}{
 		"Server Host":    c.Server.Host,
 		"Server Port":    c.Server.Port,
 		"Web UI Enabled": c.Server.IsWebUIEnabled(),
@@ -246,6 +311,17 @@ func (c *BaseConfig) GetDisplayConfig() map[string]interface{} {
 		"Log Level":      c.Logging.Level,
 		"Log Format":     c.Logging.Format,
 	}
+
+	// Add tracing info if enabled
+	if c.Tracing.IsEnabled() {
+		config["Tracing Enabled"] = true
+		config["Tracing Service Name"] = c.Tracing.ServiceName
+		config["Tracing Endpoint"] = c.Tracing.Endpoint
+	} else {
+		config["Tracing Enabled"] = false
+	}
+
+	return config
 }
 
 // GetLogging returns the logging configuration
@@ -256,6 +332,11 @@ func (c *BaseConfig) GetLogging() *LoggingConfig {
 // GetServer returns the server configuration
 func (c *BaseConfig) GetServer() *ServerConfig {
 	return &c.Server
+}
+
+// GetTracing returns the tracing configuration
+func (c *BaseConfig) GetTracing() *TracingConfig {
+	return &c.Tracing
 }
 
 func (c *BaseConfig) validateServerConfig() error {
@@ -295,6 +376,23 @@ func (c *BaseConfig) validateMetricsConfig() error {
 
 	if c.Metrics.Collection.DefaultInterval.Seconds() > 86400 {
 		return fmt.Errorf("default interval must be at most 86400 seconds (24 hours), got %d", c.Metrics.Collection.DefaultInterval.Seconds())
+	}
+
+	return nil
+}
+
+func (c *BaseConfig) validateTracingConfig() error {
+	// Only validate if tracing is enabled
+	if !c.Tracing.IsEnabled() {
+		return nil
+	}
+
+	if c.Tracing.ServiceName == "" {
+		return fmt.Errorf("service name is required when tracing is enabled")
+	}
+
+	if c.Tracing.Endpoint == "" {
+		return fmt.Errorf("tracing endpoint must be configured when tracing is enabled")
 	}
 
 	return nil
