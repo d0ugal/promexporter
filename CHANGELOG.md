@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.7.0](https://github.com/d0ugal/promexporter/compare/v1.6.1...v1.7.0) (2025-10-30)
+
+
+### Features
+
+* add duplication linter (dupl) to golangci configuration ([35be628](https://github.com/d0ugal/promexporter/commit/35be6281037f937e673e973e56f14c6e3279e19a))
+* **ci:** add auto-format workflow ([30212a5](https://github.com/d0ugal/promexporter/commit/30212a516009c92195f8a68e79e04f08d8e05a45))
+
+
+### Bug Fixes
+
+* update google.golang.org/genproto/googleapis/api digest to ab9386a ([a5c4aa4](https://github.com/d0ugal/promexporter/commit/a5c4aa43749876266f62b58a190e21cd0339f87f))
+* update google.golang.org/genproto/googleapis/rpc digest to ab9386a ([9083b5a](https://github.com/d0ugal/promexporter/commit/9083b5aa8c4bca1a5568755ff30c0ad870b682f0))
+* update module github.com/gabriel-vasile/mimetype to v1.4.11 ([1e4ce93](https://github.com/d0ugal/promexporter/commit/1e4ce93858f97144375389688d084a2875dfd094))
+
 ## [1.6.1](https://github.com/d0ugal/promexporter/compare/v1.6.0...v1.6.1) (2025-10-28)
 
 
