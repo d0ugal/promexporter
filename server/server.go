@@ -14,6 +14,7 @@ import (
 	"github.com/d0ugal/promexporter/version"
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 )
 
 // ConfigInterface defines the interface that configuration types must implement
@@ -50,9 +51,10 @@ func New(cfg ConfigInterface, metricsRegistry *metrics.Registry, exporterName st
 
 	router := gin.New()
 
-	// Add tracing middleware if tracer is available
+	// Add OpenTelemetry Gin instrumentation middleware if tracer is available
+	// This provides standardized HTTP tracing that's compatible with OpenTelemetry
 	if tracer != nil && tracer.IsEnabled() {
-		router.Use(tracer.HTTPMiddleware())
+		router.Use(otelgin.Middleware(exporterName))
 	}
 
 	router.Use(customGinLogger(), gin.Recovery())

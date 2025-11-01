@@ -15,6 +15,7 @@ import (
 	"github.com/d0ugal/promexporter/tracing"
 	"github.com/d0ugal/promexporter/version"
 	"github.com/prometheus/client_golang/prometheus"
+	"go.opentelemetry.io/contrib/instrumentation/runtime"
 )
 
 // ConfigInterface defines the interface that configuration types must implement
@@ -110,6 +111,15 @@ func (a *App) Build() *App {
 			a.tracer = tracer
 
 			slog.Info("Tracing enabled", "service_name", tracingConfig.ServiceName)
+
+			// Start runtime metrics collection (requires tracing to be enabled)
+			// This automatically collects Go runtime metrics (GC, memory, goroutines, etc.)
+			if err := runtime.Start(runtime.WithMinimumReadMemStatsInterval(time.Second)); err != nil {
+				slog.Warn("Failed to start runtime metrics collection", "error", err)
+				// Continue without runtime metrics rather than failing
+			} else {
+				slog.Info("Runtime metrics collection enabled")
+			}
 		}
 	}
 
