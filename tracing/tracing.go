@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/d0ugal/promexporter/config"
-	"github.com/gin-gonic/gin"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
@@ -187,72 +186,6 @@ func RecordSpanError(ctx context.Context, err error, attrs ...attribute.KeyValue
 	span := trace.SpanFromContext(ctx)
 	if span.IsRecording() {
 		span.RecordError(err, trace.WithAttributes(attrs...))
-	}
-}
-
-// HTTPMiddleware creates a Gin middleware for HTTP request tracing
-func (t *Tracer) HTTPMiddleware() func(c *gin.Context) {
-	slog.Debug("HTTPMiddleware called", "enabled", t.IsEnabled())
-
-	if !t.IsEnabled() {
-		slog.Debug("Tracing disabled, returning no-op middleware")
-
-		return func(c *gin.Context) {
-			c.Next()
-		}
-	}
-
-	slog.Debug("Creating HTTP tracing middleware")
-
-	return func(c *gin.Context) {
-		slog.Debug("Processing HTTP request",
-			"method", c.Request.Method,
-			"path", c.Request.URL.Path,
-			"url", c.Request.URL.String(),
-		)
-
-		// Extract trace context from headers
-		ctx := otel.GetTextMapPropagator().Extract(c.Request.Context(), propagation.HeaderCarrier(c.Request.Header))
-
-		// Start span for the HTTP request
-		spanName := fmt.Sprintf("%s %s", c.Request.Method, c.Request.URL.Path)
-		ctx, span := t.StartSpanWithAttributes(ctx, spanName,
-			attribute.String("http.method", c.Request.Method),
-			attribute.String("http.url", c.Request.URL.String()),
-			attribute.String("http.user_agent", c.Request.UserAgent()),
-		)
-
-		slog.Debug("HTTP span created",
-			"span_name", spanName,
-			"span_id", span.SpanContext().SpanID().String(),
-			"trace_id", span.SpanContext().TraceID().String(),
-		)
-
-		// Store context in Gin context
-		c.Request = c.Request.WithContext(ctx)
-
-		// Process request
-		c.Next()
-
-		// Record response information
-		span.SetAttributes(
-			attribute.Int("http.status_code", c.Writer.Status()),
-		)
-
-		slog.Debug("HTTP request completed",
-			"status_code", c.Writer.Status(),
-			"span_id", span.SpanContext().SpanID().String(),
-			"trace_id", span.SpanContext().TraceID().String(),
-		)
-
-		// Record error if status indicates error
-		if c.Writer.Status() >= 400 {
-			slog.Debug("Recording HTTP error", "status_code", c.Writer.Status())
-			span.RecordError(fmt.Errorf("HTTP %d", c.Writer.Status()))
-		}
-
-		span.End()
-		slog.Debug("HTTP span ended")
 	}
 }
 
