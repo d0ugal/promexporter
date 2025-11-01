@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0](https://github.com/d0ugal/promexporter/compare/v1.7.1...v1.8.0) (2025-11-01)
+
+
+### Features
+
+* add OpenTelemetry Gin and runtime instrumentation ([27d41de](https://github.com/d0ugal/promexporter/commit/27d41deb567ab1e994a83e75d13b585cc0819f72))
+* trigger CI after auto-format workflow completes ([7895323](https://github.com/d0ugal/promexporter/commit/7895323a519e4190fe2f092540cfdee109a8c594))
+
 ## [1.7.1](https://github.com/d0ugal/promexporter/compare/v1.7.0...v1.7.1) (2025-10-30)
 
 
