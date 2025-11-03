@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.9.0](https://github.com/d0ugal/promexporter/compare/v1.8.0...v1.9.0) (2025-11-03)
+
+
+### Features
+
+* add optional Pyroscope continuous profiling support ([7f7565a](https://github.com/d0ugal/promexporter/commit/7f7565a5ce98b49f5cd87898d69f12ea8e50def4))
+
+
+### Bug Fixes
+
+* update module github.com/klauspost/compress to v1.18.1 ([4d7c917](https://github.com/d0ugal/promexporter/commit/4d7c917df06768972823cb38c81e3b4574868297))
+
 ## [1.8.0](https://github.com/d0ugal/promexporter/compare/v1.7.1...v1.8.0) (2025-11-01)
 
 
