@@ -80,9 +80,9 @@ type TracingConfig struct {
 
 // ProfilingConfig holds profiling configuration
 type ProfilingConfig struct {
-	Enabled      *bool  `yaml:"enabled,omitempty"`       // Enable profiling (default: false)
-	ServiceName  string `yaml:"service_name"`           // Service name for profiling
-	ServerAddress string `yaml:"server_address"`         // Pyroscope server address (default: "http://10.10.10.2:4040")
+	Enabled       *bool  `yaml:"enabled,omitempty"` // Enable profiling (default: false)
+	ServiceName   string `yaml:"service_name"`      // Service name for profiling
+	ServerAddress string `yaml:"server_address"`    // Pyroscope server address (default: "http://10.10.10.2:4040")
 }
 
 // IsEnabled returns true if profiling is enabled (defaults to false)
