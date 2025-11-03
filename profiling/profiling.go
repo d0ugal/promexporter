@@ -45,6 +45,7 @@ func NewProfiler(cfg *config.ProfilingConfig, version, commit string) (*Profiler
 	if version != "" {
 		tags["version"] = version
 	}
+
 	if commit != "" {
 		tags["commit"] = commit
 	}
@@ -63,7 +64,6 @@ func NewProfiler(cfg *config.ProfilingConfig, version, commit string) (*Profiler
 		},
 		Tags: tags,
 	})
-
 	if err != nil {
 		slog.Warn("Failed to initialize continuous profiling, continuing without profiling",
 			"error", err,
