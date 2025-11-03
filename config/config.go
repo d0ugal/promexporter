@@ -10,10 +10,11 @@ import (
 
 // BaseConfig provides common configuration for all exporters
 type BaseConfig struct {
-	Server  ServerConfig  `yaml:"server"`
-	Logging LoggingConfig `yaml:"logging"`
-	Metrics MetricsConfig `yaml:"metrics"`
-	Tracing TracingConfig `yaml:"tracing"`
+	Server    ServerConfig    `yaml:"server"`
+	Logging   LoggingConfig   `yaml:"logging"`
+	Metrics   MetricsConfig   `yaml:"metrics"`
+	Tracing   TracingConfig   `yaml:"tracing"`
+	Profiling ProfilingConfig `yaml:"profiling"`
 }
 
 // ServerConfig holds server configuration
@@ -75,6 +76,22 @@ type TracingConfig struct {
 	ServiceName string            `yaml:"service_name"`      // Service name for traces
 	Endpoint    string            `yaml:"endpoint"`          // OTLP endpoint (default: "http://localhost:4318/v1/traces")
 	Headers     map[string]string `yaml:"headers"`           // Additional headers for OTLP
+}
+
+// ProfilingConfig holds profiling configuration
+type ProfilingConfig struct {
+	Enabled      *bool  `yaml:"enabled,omitempty"`       // Enable profiling (default: false)
+	ServiceName  string `yaml:"service_name"`           // Service name for profiling
+	ServerAddress string `yaml:"server_address"`         // Pyroscope server address (default: "http://10.10.10.2:4040")
+}
+
+// IsEnabled returns true if profiling is enabled (defaults to false)
+func (p *ProfilingConfig) IsEnabled() bool {
+	if p.Enabled == nil {
+		return false // default to disabled
+	}
+
+	return *p.Enabled
 }
 
 // UnmarshalYAML implements custom unmarshaling to track if the value was set
@@ -189,6 +206,23 @@ func loadFromEnv() (*BaseConfig, error) {
 
 	if endpoint := os.Getenv("TRACING_ENDPOINT"); endpoint != "" {
 		config.Tracing.Endpoint = endpoint
+	}
+
+	// Profiling configuration
+	if enabledStr := os.Getenv("PROFILING_ENABLED"); enabledStr != "" {
+		if enabled, err := parseBool(enabledStr); err != nil {
+			return nil, fmt.Errorf("invalid profiling enabled value: %w", err)
+		} else {
+			config.Profiling.Enabled = &enabled
+		}
+	}
+
+	if serviceName := os.Getenv("PROFILING_SERVICE_NAME"); serviceName != "" {
+		config.Profiling.ServiceName = serviceName
+	}
+
+	if serverAddress := os.Getenv("PROFILING_SERVER_ADDRESS"); serverAddress != "" {
+		config.Profiling.ServerAddress = serverAddress
 	}
 
 	// Set defaults for any missing values
@@ -332,6 +366,11 @@ func (c *BaseConfig) GetLogging() *LoggingConfig {
 // GetServer returns the server configuration
 func (c *BaseConfig) GetServer() *ServerConfig {
 	return &c.Server
+}
+
+// GetProfiling returns the profiling configuration
+func (c *BaseConfig) GetProfiling() *ProfilingConfig {
+	return &c.Profiling
 }
 
 // GetTracing returns the tracing configuration

@@ -23,6 +23,7 @@ type ConfigInterface interface {
 	GetLogging() *config.LoggingConfig
 	GetServer() *config.ServerConfig
 	GetTracing() *config.TracingConfig
+	GetProfiling() *config.ProfilingConfig
 }
 
 // CustomConfigRenderer allows exporters to provide custom HTML fragments for specific config keys

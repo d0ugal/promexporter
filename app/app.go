@@ -11,6 +11,7 @@ import (
 	"github.com/d0ugal/promexporter/config"
 	"github.com/d0ugal/promexporter/logging"
 	"github.com/d0ugal/promexporter/metrics"
+	"github.com/d0ugal/promexporter/profiling"
 	"github.com/d0ugal/promexporter/server"
 	"github.com/d0ugal/promexporter/tracing"
 	"github.com/d0ugal/promexporter/version"
@@ -24,6 +25,7 @@ type ConfigInterface interface {
 	GetLogging() *config.LoggingConfig
 	GetServer() *config.ServerConfig
 	GetTracing() *config.TracingConfig
+	GetProfiling() *config.ProfilingConfig
 }
 
 // App represents the main application
@@ -35,6 +37,7 @@ type App struct {
 	collectors  []Collector
 	versionInfo *VersionInfo
 	tracer      *tracing.Tracer
+	profiler    *profiling.Profiler
 }
 
 // VersionInfo holds version information for the application
@@ -123,6 +126,31 @@ func (a *App) Build() *App {
 		}
 	}
 
+	// Initialize profiling
+	profilingConfig := a.config.GetProfiling()
+	if profilingConfig.IsEnabled() {
+		var versionStr, commitStr string
+		if a.versionInfo != nil {
+			versionStr = a.versionInfo.Version
+			commitStr = a.versionInfo.Commit
+		} else {
+			versionInfo := version.Get()
+			versionStr = versionInfo.Version
+			commitStr = versionInfo.Commit
+		}
+
+		profiler, err := profiling.NewProfiler(profilingConfig, versionStr, commitStr)
+		if err != nil {
+			slog.Error("Failed to initialize profiling", "error", err)
+			// Continue without profiling rather than failing
+		} else {
+			a.profiler = profiler
+			if profiler.IsEnabled() {
+				slog.Info("Profiling enabled", "service_name", profilingConfig.ServiceName)
+			}
+		}
+	}
+
 	// Set version info metric
 	if a.versionInfo != nil {
 		// Use custom version info if provided
@@ -190,6 +218,11 @@ func (a *App) Run() error {
 			if err := a.tracer.Shutdown(shutdownCtx); err != nil {
 				slog.Error("Failed to shutdown tracing gracefully", "error", err)
 			}
+		}
+
+		// Shutdown profiling
+		if a.profiler != nil {
+			a.profiler.Stop()
 		}
 
 		// Shutdown server
