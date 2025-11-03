@@ -37,6 +37,10 @@ func (m *mockConfig) GetTracing() *config.TracingConfig {
 	return m.tracing
 }
 
+func (m *mockConfig) GetProfiling() *config.ProfilingConfig {
+	return &config.ProfilingConfig{}
+}
+
 func TestWithVersionInfo(t *testing.T) {
 	// Create a custom registry for this test
 	registry := prometheus.NewRegistry()
