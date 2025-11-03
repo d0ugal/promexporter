@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.9.1](https://github.com/d0ugal/promexporter/compare/v1.9.0...v1.9.1) (2025-11-03)
+
+
+### Bug Fixes
+
+* update google.golang.org/genproto/googleapis/api digest to f26f940 ([5346d68](https://github.com/d0ugal/promexporter/commit/5346d682ac776518d69badfc97e7bfc93db93712))
+* update google.golang.org/genproto/googleapis/rpc digest to f26f940 ([0f9e8d7](https://github.com/d0ugal/promexporter/commit/0f9e8d7a71364d30817306f044431d9271262d18))
+* update google.golang.org/genproto/googleapis/rpc digest to f26f940 ([2ae5a31](https://github.com/d0ugal/promexporter/commit/2ae5a31405c930859accb476901caed474aa8da9))
+* update module go.opentelemetry.io/proto/otlp to v1.9.0 ([b074a3b](https://github.com/d0ugal/promexporter/commit/b074a3b2dff52cad636d56ad9ab3a341911b2105))
+
 ## [1.9.0](https://github.com/d0ugal/promexporter/compare/v1.8.0...v1.9.0) (2025-11-03)
 
 
