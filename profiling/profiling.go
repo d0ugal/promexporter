@@ -57,10 +57,15 @@ func NewProfiler(cfg *config.ProfilingConfig, version, commit string) (*Profiler
 		Logger:          pyroscope.StandardLogger,
 		ProfileTypes: []pyroscope.ProfileType{
 			pyroscope.ProfileCPU,
-			pyroscope.ProfileAllocObjects,
-			pyroscope.ProfileAllocSpace,
 			pyroscope.ProfileInuseObjects,
+			pyroscope.ProfileAllocObjects,
 			pyroscope.ProfileInuseSpace,
+			pyroscope.ProfileAllocSpace,
+			pyroscope.ProfileGoroutines,
+			pyroscope.ProfileMutexCount,
+			pyroscope.ProfileMutexDuration,
+			pyroscope.ProfileBlockCount,
+			pyroscope.ProfileBlockDuration,
 		},
 		Tags: tags,
 	})
