@@ -436,3 +436,46 @@ func (c *BaseConfig) validateTracingConfig() error {
 
 	return nil
 }
+
+// ApplyGenericEnvVars applies generic (non-prefixed) environment variables to a BaseConfig.
+// This handles shared configuration like TRACING_ENABLED, PROFILING_ENABLED, etc.
+// that are common across all exporters and don't need exporter-specific prefixes.
+// This should be called by exporters after loading their own config to ensure
+// these generic environment variables are applied.
+func ApplyGenericEnvVars(config *BaseConfig) error {
+	// Tracing configuration (generic, no prefix)
+	if enabledStr := os.Getenv("TRACING_ENABLED"); enabledStr != "" {
+		if enabled, err := parseBool(enabledStr); err != nil {
+			return fmt.Errorf("invalid tracing enabled value: %w", err)
+		} else {
+			config.Tracing.Enabled = &enabled
+		}
+	}
+
+	if serviceName := os.Getenv("TRACING_SERVICE_NAME"); serviceName != "" {
+		config.Tracing.ServiceName = serviceName
+	}
+
+	if endpoint := os.Getenv("TRACING_ENDPOINT"); endpoint != "" {
+		config.Tracing.Endpoint = endpoint
+	}
+
+	// Profiling configuration (generic, no prefix)
+	if enabledStr := os.Getenv("PROFILING_ENABLED"); enabledStr != "" {
+		if enabled, err := parseBool(enabledStr); err != nil {
+			return fmt.Errorf("invalid profiling enabled value: %w", err)
+		} else {
+			config.Profiling.Enabled = &enabled
+		}
+	}
+
+	if serviceName := os.Getenv("PROFILING_SERVICE_NAME"); serviceName != "" {
+		config.Profiling.ServiceName = serviceName
+	}
+
+	if serverAddress := os.Getenv("PROFILING_SERVER_ADDRESS"); serverAddress != "" {
+		config.Profiling.ServerAddress = serverAddress
+	}
+
+	return nil
+}
