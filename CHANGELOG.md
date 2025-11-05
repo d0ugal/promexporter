@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/d0ugal/promexporter/compare/v1.10.0...v1.11.0) (2025-11-04)
+
+
+### Features
+
+* **profiling:** add all profile types from pyroscope library ([670e58c](https://github.com/d0ugal/promexporter/commit/670e58c89eb60708072b25f4ff99ffe243330696))
+
 ## [1.10.0](https://github.com/d0ugal/promexporter/compare/v1.9.0...v1.10.0) (2025-11-04)
 
 
