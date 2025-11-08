@@ -297,10 +297,16 @@ func (rc *RandomCollector) generateCounterMetrics(ctx context.Context, span *tra
 
 		// Increment counters with random values
 		increment := rand.Float64() * 10
-		rc.metrics.RandomCounter.WithLabelValues(service, region).Add(increment)
+		rc.metrics.RandomCounter.With(prometheus.Labels{
+			"service": service,
+			"region":  region,
+		}).Add(increment)
 
 		rateIncrement := rand.Float64() * 5
-		rc.metrics.RandomCounterRate.WithLabelValues(service, rateType).Add(rateIncrement)
+		rc.metrics.RandomCounterRate.With(prometheus.Labels{
+			"service":  service,
+			"rate_type": rateType,
+		}).Add(rateIncrement)
 	}
 
 	if counterSpan != nil {
@@ -337,9 +343,18 @@ func (rc *RandomCollector) generateGaugeMetrics(ctx context.Context, span *traci
 		memType := memoryTypes[rand.Intn(len(memoryTypes))]
 
 		// Set gauge values
-		rc.metrics.RandomGauge.WithLabelValues(instance, metricType).Set(rand.Float64() * 100)
-		rc.metrics.RandomTemperature.WithLabelValues(sensor, location).Set(rand.Float64()*30 + 20)         // 20-50°C
-		rc.metrics.RandomMemory.WithLabelValues(process, memType).Set(rand.Float64() * 1024 * 1024 * 1024) // Up to 1GB
+		rc.metrics.RandomGauge.With(prometheus.Labels{
+			"instance": instance,
+			"type":     metricType,
+		}).Set(rand.Float64() * 100)
+		rc.metrics.RandomTemperature.With(prometheus.Labels{
+			"sensor":   sensor,
+			"location": location,
+		}).Set(rand.Float64()*30 + 20) // 20-50°C
+		rc.metrics.RandomMemory.With(prometheus.Labels{
+			"process": process,
+			"type":    memType,
+		}).Set(rand.Float64() * 1024 * 1024 * 1024) // Up to 1GB
 	}
 
 	if gaugeSpan != nil {
@@ -373,10 +388,16 @@ func (rc *RandomCollector) generateHistogramMetrics(ctx context.Context, span *t
 
 		// Generate random latency values
 		latency := rand.Float64() * 2.0 // 0-2 seconds
-		rc.metrics.RandomLatency.WithLabelValues(service, endpoint).Observe(latency)
+		rc.metrics.RandomLatency.With(prometheus.Labels{
+			"service":  service,
+			"endpoint": endpoint,
+		}).Observe(latency)
 
 		responseTime := rand.Float64() * 1.0 // 0-1 seconds
-		rc.metrics.RandomResponseTime.WithLabelValues(method, status).Observe(responseTime)
+		rc.metrics.RandomResponseTime.With(prometheus.Labels{
+			"method": method,
+			"status": status,
+		}).Observe(responseTime)
 	}
 
 	if histogramSpan != nil {
@@ -410,10 +431,16 @@ func (rc *RandomCollector) generateSummaryMetrics(ctx context.Context, span *tra
 
 		// Generate random duration values
 		duration := rand.Float64() * 5.0 // 0-5 seconds
-		rc.metrics.RandomDuration.WithLabelValues(operation, priority).Observe(duration)
+		rc.metrics.RandomDuration.With(prometheus.Labels{
+			"operation": operation,
+			"priority":  priority,
+		}).Observe(duration)
 
 		processingTime := rand.Float64() * 3.0 // 0-3 seconds
-		rc.metrics.RandomProcessingTime.WithLabelValues(task, worker).Observe(processingTime)
+		rc.metrics.RandomProcessingTime.With(prometheus.Labels{
+			"task":   task,
+			"worker": worker,
+		}).Observe(processingTime)
 	}
 
 	if summarySpan != nil {
@@ -435,7 +462,11 @@ func (rc *RandomCollector) generateInfoMetrics(ctx context.Context, span *tracin
 	}
 
 	// Set info metrics (these don't change often)
-	rc.metrics.RandomInfo.WithLabelValues("1.0.0", "2024-01-01", "1.21").Set(1)
+	rc.metrics.RandomInfo.With(prometheus.Labels{
+		"version":    "1.0.0",
+		"build_date": "2024-01-01",
+		"go_version": "1.21",
+	}).Set(1)
 
 	if infoSpan != nil {
 		infoSpan.AddEvent("info_metrics_set")
