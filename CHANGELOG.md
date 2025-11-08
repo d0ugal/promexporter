@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.11.2](https://github.com/d0ugal/promexporter/compare/v1.11.1...v1.11.2) (2025-11-08)
+
+
+### Bug Fixes
+
+* update module github.com/quic-go/quic-go to v0.56.0 ([7c79654](https://github.com/d0ugal/promexporter/commit/7c7965418c2bcda0afa1ff647e963f000da477e2))
+* update module golang.org/x/arch to v0.23.0 ([d2360d0](https://github.com/d0ugal/promexporter/commit/d2360d07366718c5084a1d4bef7d3337557c7a2c))
+* update module golang.org/x/sys to v0.38.0 ([60b184f](https://github.com/d0ugal/promexporter/commit/60b184f53d51aa12bb003ca4791ac5623e5e00f7))
+
 ## [1.11.1](https://github.com/d0ugal/promexporter/compare/v1.11.0...v1.11.1) (2025-11-05)
 
 
