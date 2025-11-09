@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.0](https://github.com/d0ugal/promexporter/compare/v1.11.2...v1.12.0) (2025-11-09)
+
+
+### Features
+
+* add CSS-only dark mode support ([ef6a567](https://github.com/d0ugal/promexporter/commit/ef6a56792a4a84588a7e1e052b08b9556ff70fd7))
+
 ## [1.11.2](https://github.com/d0ugal/promexporter/compare/v1.11.1...v1.11.2) (2025-11-08)
 
 
