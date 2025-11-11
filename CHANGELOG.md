@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.13.0](https://github.com/d0ugal/promexporter/compare/v1.12.2...v1.13.0) (2025-11-11)
+
+
+### Features
+
+* **ci:** use RELEASE_TOKEN secret for release-please ([656166c](https://github.com/d0ugal/promexporter/commit/656166cc46d0e6cd2b27c44351e3cc1272da1dc5))
+
+
+### Bug Fixes
+
+* update module golang.org/x/net to v0.47.0 ([2b18c11](https://github.com/d0ugal/promexporter/commit/2b18c11825c86798150931c7d076825751ae9903))
+
 ## [1.12.2](https://github.com/d0ugal/promexporter/compare/v1.12.1...v1.12.2) (2025-11-11)
 
 
