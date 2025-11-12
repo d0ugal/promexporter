@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.1](https://github.com/d0ugal/promexporter/compare/v1.13.0...v1.13.1) (2025-11-12)
+
+
+### Bug Fixes
+
+* **release:** remove Docker build steps from release workflow ([6568c24](https://github.com/d0ugal/promexporter/commit/6568c2489a788df345d20c6182da1f7115989778))
+
 ## [1.13.0](https://github.com/d0ugal/promexporter/compare/v1.12.2...v1.13.0) (2025-11-11)
 
 
