@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.13.2](https://github.com/d0ugal/promexporter/compare/v1.13.1...v1.13.2) (2025-11-18)
+
+
+### Bug Fixes
+
+* update module github.com/prometheus/common to v0.67.3 ([5e6389e](https://github.com/d0ugal/promexporter/commit/5e6389e75695f88af6e78ea98384f0ce3e05d912))
+* update module google.golang.org/grpc to v1.77.0 ([4b51ce5](https://github.com/d0ugal/promexporter/commit/4b51ce5dda5c491fc787215f190c4a60f0518fe0))
+
 ## [1.13.1](https://github.com/d0ugal/promexporter/compare/v1.13.0...v1.13.1) (2025-11-12)
 
 
