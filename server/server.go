@@ -199,6 +199,7 @@ func (s *Server) handleHealth(c *gin.Context) {
 	if c.Request.Method == http.MethodHead {
 		c.Status(http.StatusOK)
 		c.Header("Content-Type", "application/json; charset=utf-8")
+
 		return
 	}
 
