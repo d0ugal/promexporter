@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.13.3](https://github.com/d0ugal/promexporter/compare/v1.13.2...v1.13.3) (2025-11-19)
+
+
+### Bug Fixes
+
+* add HEAD method support for /health endpoint ([3344fdc](https://github.com/d0ugal/promexporter/commit/3344fdcb73a9d6eaae0191da0a862cfa58989144))
+* update module golang.org/x/crypto to v0.45.0 ([15e7252](https://github.com/d0ugal/promexporter/commit/15e7252cd832525b24847b30a021e83b14a99419))
+
 ## [1.13.2](https://github.com/d0ugal/promexporter/compare/v1.13.1...v1.13.2) (2025-11-18)
 
 
