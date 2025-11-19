@@ -141,6 +141,7 @@ func (s *Server) setupRoutes() {
 	// Health endpoint (optional)
 	if s.config.GetServer().IsHealthEnabled() {
 		s.router.GET("/health", s.handleHealth)
+		s.router.HEAD("/health", s.handleHealth)
 	}
 }
 
@@ -185,14 +186,23 @@ func (s *Server) handleRoot(c *gin.Context) {
 
 func (s *Server) handleHealth(c *gin.Context) {
 	versionInfo := version.Get()
-	c.JSON(http.StatusOK, gin.H{
+	response := gin.H{
 		"status":     "healthy",
 		"timestamp":  time.Now().Unix(),
 		"service":    s.name,
 		"version":    versionInfo.Version,
 		"commit":     versionInfo.Commit,
 		"build_date": versionInfo.BuildDate,
-	})
+	}
+
+	// For HEAD requests, set status and headers but don't write body
+	if c.Request.Method == http.MethodHead {
+		c.Status(http.StatusOK)
+		c.Header("Content-Type", "application/json; charset=utf-8")
+		return
+	}
+
+	c.JSON(http.StatusOK, response)
 }
 
 // getConfigData returns configuration data for the template
