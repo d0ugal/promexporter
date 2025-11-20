@@ -17,7 +17,7 @@ linters:
     - contextcheck
     - staticcheck
     - dupl
-    
+
   disable:
     - cyclop  # Too strict
     - depguard  # Allow internal imports
