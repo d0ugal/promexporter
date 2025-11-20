@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.5](https://github.com/d0ugal/promexporter/compare/v1.13.4...v1.13.5) (2025-11-20)
+
+
+### Bug Fixes
+
+* **ci:** prevent dev-build from running on PRs and fix YAML syntax ([79e5794](https://github.com/d0ugal/promexporter/commit/79e5794bffb68e143e4ec4a983c1b08ef9a7ec9d))
+
 ## [1.13.4](https://github.com/d0ugal/promexporter/compare/v1.13.3...v1.13.4) (2025-11-20)
 
 
