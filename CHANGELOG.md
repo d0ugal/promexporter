@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.4](https://github.com/d0ugal/promexporter/compare/v1.13.3...v1.13.4) (2025-11-20)
+
+
+### Bug Fixes
+
+* resolve YAML linting issues ([6993e83](https://github.com/d0ugal/promexporter/commit/6993e83d161f7fe5ebf973e25c233f916747ad8e))
+
 ## [1.13.3](https://github.com/d0ugal/promexporter/compare/v1.13.2...v1.13.3) (2025-11-19)
 
 
