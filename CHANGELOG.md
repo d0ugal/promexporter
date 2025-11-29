@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.1](https://github.com/d0ugal/promexporter/compare/v1.14.0...v1.14.1) (2025-11-29)
+
+
+### Bug Fixes
+
+* move reusable workflows to top level of workflows directory ([732b3c4](https://github.com/d0ugal/promexporter/commit/732b3c49fecf6d12cbc0a91fb082958752926d84))
+
 ## [1.14.0](https://github.com/d0ugal/promexporter/compare/v1.13.8...v1.14.0) (2025-11-29)
 
 
