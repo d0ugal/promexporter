@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.0](https://github.com/d0ugal/promexporter/compare/v1.13.8...v1.14.0) (2025-11-29)
+
+
+### Features
+
+* add reusable workflows for exporter repositories ([9779cab](https://github.com/d0ugal/promexporter/commit/9779cabedfaaaea2ce61700472895b06650b5250))
+
 ## [1.13.8](https://github.com/d0ugal/promexporter/compare/v1.13.7...v1.13.8) (2025-11-29)
 
 
