@@ -1,10 +1,10 @@
-# Common Reusable Workflows
+# Reusable Workflows
 
 This directory contains reusable GitHub Actions workflows that are shared across all exporter repositories.
 
-## Workflows
+## Exporter Workflows
 
-### `dev-build.yml`
+### `exporter-dev-build.yml`
 Development build workflow that builds and pushes Docker images to GHCR with dev tags.
 
 **Inputs:**
@@ -14,13 +14,13 @@ Development build workflow that builds and pushes Docker images to GHCR with dev
 ```yaml
 jobs:
   call-dev-build:
-    uses: d0ugal/promexporter/.github/workflows/common/dev-build.yml@main
+    uses: d0ugal/promexporter/.github/workflows/exporter-dev-build.yml@v1.14.0
     with:
       image_name: ${{ github.repository }}
     secrets: inherit
 ```
 
-### `ci.yml`
+### `exporter-ci.yml`
 CI workflow that runs tests, linting, builds, and security scans.
 
 **Inputs:**
@@ -31,14 +31,14 @@ CI workflow that runs tests, linting, builds, and security scans.
 ```yaml
 jobs:
   call-ci:
-    uses: d0ugal/promexporter/.github/workflows/common/ci.yml@main
+    uses: d0ugal/promexporter/.github/workflows/exporter-ci.yml@v1.14.0
     with:
       binary_name: ${{ github.event.repository.name }}
       go_version: '1.25.4'
     secrets: inherit
 ```
 
-### `release-please.yml`
+### `exporter-release-please.yml`
 Release workflow that uses release-please to create releases and build/push Docker images.
 
 **Inputs:**
@@ -48,7 +48,7 @@ Release workflow that uses release-please to create releases and build/push Dock
 ```yaml
 jobs:
   call-release-please:
-    uses: d0ugal/promexporter/.github/workflows/common/release-please.yml@main
+    uses: d0ugal/promexporter/.github/workflows/exporter-release-please.yml@v1.14.0
     with:
       image_name: ${{ github.repository }}
     secrets: inherit
@@ -57,14 +57,14 @@ jobs:
 **Required Secrets:**
 - `RELEASE_TOKEN`: GitHub token with permissions to create releases and PRs
 
-### `auto-format.yml`
+### `exporter-auto-format.yml`
 Auto-format workflow that runs `make fmt` and commits formatting changes.
 
 **Usage:**
 ```yaml
 jobs:
   call-auto-format:
-    uses: d0ugal/promexporter/.github/workflows/common/auto-format.yml@main
+    uses: d0ugal/promexporter/.github/workflows/exporter-auto-format.yml@v1.14.0
     secrets: inherit
 ```
 
@@ -73,13 +73,13 @@ jobs:
 These workflows are versioned alongside promexporter releases. To pin to a specific version, use the promexporter version tag:
 
 ```yaml
-uses: d0ugal/promexporter/.github/workflows/common/dev-build.yml@v1.13.7
+uses: d0ugal/promexporter/.github/workflows/exporter-dev-build.yml@v1.14.0
 ```
 
 For the latest version, use `@main`:
 
 ```yaml
-uses: d0ugal/promexporter/.github/workflows/common/dev-build.yml@main
+uses: d0ugal/promexporter/.github/workflows/exporter-dev-build.yml@main
 ```
 
 ## Maintenance
