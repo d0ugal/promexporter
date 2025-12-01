@@ -85,4 +85,3 @@ jobs:
           VERSION=${{ steps.release_please.outputs.tag_name }}
           COMMIT=${{ github.sha }}
           BUILD_DATE=${{ github.event.head_commit.timestamp }}
-
