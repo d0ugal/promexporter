@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.2](https://github.com/d0ugal/promexporter/compare/v1.14.1...v1.14.2) (2025-12-01)
+
+
+### Bug Fixes
+
+* update module github.com/klauspost/compress to v1.18.2 ([b0a1760](https://github.com/d0ugal/promexporter/commit/b0a176063059e41613e0e0d4a9b0e8b8d1379aac))
+
 ## [1.14.1](https://github.com/d0ugal/promexporter/compare/v1.14.0...v1.14.1) (2025-11-29)
 
 
