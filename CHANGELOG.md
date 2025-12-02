@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.3](https://github.com/d0ugal/promexporter/compare/v1.14.2...v1.14.3) (2025-12-02)
+
+
+### Bug Fixes
+
+* remove trailing blank lines in workflow files ([05d36fb](https://github.com/d0ugal/promexporter/commit/05d36fb932a216ce5b4c1b9e47ed2e89ab6d702a))
+
 ## [1.14.2](https://github.com/d0ugal/promexporter/compare/v1.14.1...v1.14.2) (2025-12-01)
 
 
