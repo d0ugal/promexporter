@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.3](https://github.com/d0ugal/promexporter/compare/v1.14.2...v1.14.3) (2025-12-03)
+
+
+### Bug Fixes
+
+* remove trailing blank lines in workflow files ([05d36fb](https://github.com/d0ugal/promexporter/commit/05d36fb932a216ce5b4c1b9e47ed2e89ab6d702a))
+* update dependency go to v1.25.5 ([f46e65c](https://github.com/d0ugal/promexporter/commit/f46e65ce16db3b1ccd5c3a0ac4376c0e798ae4a5))
+* update google.golang.org/genproto/googleapis/rpc digest to ff82c1b ([aa0619b](https://github.com/d0ugal/promexporter/commit/aa0619bd7bdd79269338ffba2d924d66078e53fa))
+
 ## [1.14.2](https://github.com/d0ugal/promexporter/compare/v1.14.1...v1.14.2) (2025-12-01)
 
 
