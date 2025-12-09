@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.14.4](https://github.com/d0ugal/promexporter/compare/v1.14.3...v1.14.4) (2025-12-09)
+
+
+### Bug Fixes
+
+* update module golang.org/x/crypto to v0.46.0 ([0619087](https://github.com/d0ugal/promexporter/commit/061908702ddac9c07011447a351d0df93313b5b8))
+* update module golang.org/x/net to v0.48.0 ([ba8666e](https://github.com/d0ugal/promexporter/commit/ba8666ed078c84673f8d3b622e2a7acd01a6dcb7))
+* update module golang.org/x/sys to v0.39.0 ([addbf94](https://github.com/d0ugal/promexporter/commit/addbf9459e0b90411d9802081af5fbb8804518c7))
+* update module golang.org/x/text to v0.32.0 ([fb61a11](https://github.com/d0ugal/promexporter/commit/fb61a11f829216251859792bc446d0888b67c2b3))
+* update opentelemetry-go monorepo to v1.39.0 ([d647e5a](https://github.com/d0ugal/promexporter/commit/d647e5abfaf3890009d78d1dd02f861eb12e92ca))
+* update opentelemetry-go-contrib monorepo to v0.64.0 ([33b030c](https://github.com/d0ugal/promexporter/commit/33b030c57333198b11c4e3bc36f91c17fe37600a))
+
 ## [1.14.3](https://github.com/d0ugal/promexporter/compare/v1.14.2...v1.14.3) (2025-12-03)
 
 
