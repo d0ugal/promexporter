@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.5](https://github.com/d0ugal/promexporter/compare/v1.14.4...v1.14.5) (2025-12-12)
+
+
+### Bug Fixes
+
+* update module google.golang.org/protobuf to v1.36.11 ([5b4ff01](https://github.com/d0ugal/promexporter/commit/5b4ff0145f9fbde49c0399ef38ab61a32deb2a25))
+
 ## [1.14.4](https://github.com/d0ugal/promexporter/compare/v1.14.3...v1.14.4) (2025-12-09)
 
 
