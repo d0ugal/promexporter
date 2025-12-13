@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.6](https://github.com/d0ugal/promexporter/compare/v1.14.5...v1.14.6) (2025-12-13)
+
+
+### Bug Fixes
+
+* update google.golang.org/genproto/googleapis/rpc digest to 97cd9d5 ([724ed61](https://github.com/d0ugal/promexporter/commit/724ed61ea93d43b584dcfd16102917dbe8915f01))
+* update module github.com/gabriel-vasile/mimetype to v1.4.12 ([9a96f86](https://github.com/d0ugal/promexporter/commit/9a96f8647c176401c501b9802b8e62972d347ad7))
+* update module github.com/go-playground/validator/v10 to v10.29.0 ([a17da62](https://github.com/d0ugal/promexporter/commit/a17da62f5dfbb1aacb94be303ebd9e6d2a026875))
+
 ## [1.14.5](https://github.com/d0ugal/promexporter/compare/v1.14.4...v1.14.5) (2025-12-12)
 
 
