@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.7](https://github.com/d0ugal/promexporter/compare/v1.14.6...v1.14.7) (2025-12-17)
+
+
+### Bug Fixes
+
+* update module github.com/goccy/go-yaml to v1.19.1 ([d8ce1a8](https://github.com/d0ugal/promexporter/commit/d8ce1a8145274d910f6ec419efab9b53d0e5a7c9))
+
 ## [1.14.6](https://github.com/d0ugal/promexporter/compare/v1.14.5...v1.14.6) (2025-12-13)
 
 
