@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.9](https://github.com/d0ugal/promexporter/compare/v1.14.8...v1.14.9) (2025-12-21)
+
+
+### Bug Fixes
+
+* update module github.com/go-playground/validator/v10 to v10.30.0 ([af5831e](https://github.com/d0ugal/promexporter/commit/af5831e6b93ba83653c88d61d2f5c9454eb9133b))
+
 ## [1.14.8](https://github.com/d0ugal/promexporter/compare/v1.14.7...v1.14.8) (2025-12-21)
 
 
