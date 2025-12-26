@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.12](https://github.com/d0ugal/promexporter/compare/v1.14.11...v1.14.12) (2025-12-26)
+
+
+### Bug Fixes
+
+* update module github.com/go-playground/validator/v10 to v10.30.1 ([b87f99b](https://github.com/d0ugal/promexporter/commit/b87f99b67bf2a89a68be3d6aadebfb3dec3f5cbf))
+* update module github.com/grpc-ecosystem/grpc-gateway/v2 to v2.27.4 ([3c411cb](https://github.com/d0ugal/promexporter/commit/3c411cbab5ca679665be2401e5357c2edf353b61))
+
 ## [1.14.11](https://github.com/d0ugal/promexporter/compare/v1.14.10...v1.14.11) (2025-12-23)
 
 
