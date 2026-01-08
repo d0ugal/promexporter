@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.15](https://github.com/d0ugal/promexporter/compare/v1.14.14...v1.14.15) (2026-01-08)
+
+
+### Bug Fixes
+
+* update module golang.org/x/sys to v0.40.0 ([65cd972](https://github.com/d0ugal/promexporter/commit/65cd972c38829b6e2bd4765a275f1faca4784e4c))
+
 ## [1.14.14](https://github.com/d0ugal/promexporter/compare/v1.14.13...v1.14.14) (2026-01-08)
 
 
