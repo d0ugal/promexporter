@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.16](https://github.com/d0ugal/promexporter/compare/v1.14.15...v1.14.16) (2026-01-10)
+
+
+### Bug Fixes
+
+* update module golang.org/x/text to v0.33.0 ([c765cc6](https://github.com/d0ugal/promexporter/commit/c765cc622a072ca0c5bf367f2d7a5b28f0dd8230))
+
 ## [1.14.15](https://github.com/d0ugal/promexporter/compare/v1.14.14...v1.14.15) (2026-01-08)
 
 
