@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.17](https://github.com/d0ugal/promexporter/compare/v1.14.16...v1.14.17) (2026-01-11)
+
+
+### Bug Fixes
+
+* update module github.com/quic-go/quic-go to v0.59.0 ([aea9ace](https://github.com/d0ugal/promexporter/commit/aea9ace42ea1bbee8eaccccb19dd71e972c340c0))
+
 ## [1.14.16](https://github.com/d0ugal/promexporter/compare/v1.14.15...v1.14.16) (2026-01-10)
 
 
