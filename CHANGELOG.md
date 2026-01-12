@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.18](https://github.com/d0ugal/promexporter/compare/v1.14.17...v1.14.18) (2026-01-12)
+
+
+### Bug Fixes
+
+* update module golang.org/x/crypto to v0.47.0 ([2841d29](https://github.com/d0ugal/promexporter/commit/2841d29fcdbb45f774a8f82fff6bbf46bd1b51da))
+
 ## [1.14.17](https://github.com/d0ugal/promexporter/compare/v1.14.16...v1.14.17) (2026-01-11)
 
 
