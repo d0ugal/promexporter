@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.19](https://github.com/d0ugal/promexporter/compare/v1.14.18...v1.14.19) (2026-01-12)
+
+
+### Bug Fixes
+
+* update google.golang.org/genproto/googleapis/rpc digest to 99fd39f ([aab469a](https://github.com/d0ugal/promexporter/commit/aab469ac0eda3e9edebd81e44b5d0c345764af19))
+* update module golang.org/x/net to v0.49.0 ([3ce1ddf](https://github.com/d0ugal/promexporter/commit/3ce1ddf40700c636df95794b6f56f83709049860))
+
 ## [1.14.18](https://github.com/d0ugal/promexporter/compare/v1.14.17...v1.14.18) (2026-01-12)
 
 
