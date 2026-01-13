@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.20](https://github.com/d0ugal/promexporter/compare/v1.14.19...v1.14.20) (2026-01-13)
+
+
+### Bug Fixes
+
+* update module go.yaml.in/yaml/v2 to v3 ([5077077](https://github.com/d0ugal/promexporter/commit/5077077db605e438f645d5de7b2e389a1e023f9e))
+
 ## [1.14.19](https://github.com/d0ugal/promexporter/compare/v1.14.18...v1.14.19) (2026-01-12)
 
 
