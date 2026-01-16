@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.21](https://github.com/d0ugal/promexporter/compare/v1.14.20...v1.14.21) (2026-01-16)
+
+
+### Bug Fixes
+
+* update dependency go to v1.25.6 ([636020f](https://github.com/d0ugal/promexporter/commit/636020f08fb3889565b9e7ef4899a103ddcaec7b))
+* update google.golang.org/genproto/googleapis/rpc digest to 3f89685 ([aab1981](https://github.com/d0ugal/promexporter/commit/aab19814de569443a73d128099f0e2304752f8da))
+* update module github.com/klauspost/compress to v1.18.3 ([51fcfaa](https://github.com/d0ugal/promexporter/commit/51fcfaa0342ed7c6a3096c4066a04307d8a5907e))
+
 ## [1.14.20](https://github.com/d0ugal/promexporter/compare/v1.14.19...v1.14.20) (2026-01-13)
 
 
