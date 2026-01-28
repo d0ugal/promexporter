@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.26](https://github.com/d0ugal/promexporter/compare/v1.14.25...v1.14.26) (2026-01-28)
+
+
+### Bug Fixes
+
+* update module github.com/grpc-ecosystem/grpc-gateway/v2 to v2.27.6 ([cbd708a](https://github.com/d0ugal/promexporter/commit/cbd708a2b1cd9e02ca0259a60004b887da8efc99))
+
 ## [1.14.25](https://github.com/d0ugal/promexporter/compare/v1.14.24...v1.14.25) (2026-01-28)
 
 
