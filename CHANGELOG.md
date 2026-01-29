@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/d0ugal/promexporter/compare/v1.14.26...v2.0.0) (2026-01-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace unmaintained gopkg.in/yaml.v3 dependency with actively maintained github.com/goccy/go-yaml v1.19.2.
+
+### Code Refactoring
+
+* replace abandoned gopkg.in/yaml.v3 with goccy/go-yaml ([6ad25c1](https://github.com/d0ugal/promexporter/commit/6ad25c18e7c2dab9e28f455bde43e6c24be0e9b6))
+
 ## [1.14.26](https://github.com/d0ugal/promexporter/compare/v1.14.25...v1.14.26) (2026-01-28)
 
 
