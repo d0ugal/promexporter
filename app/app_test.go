@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/d0ugal/promexporter/config"
-	"github.com/d0ugal/promexporter/metrics"
+	"github.com/d0ugal/promexporter/v2/config"
+	"github.com/d0ugal/promexporter/v2/metrics"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/testutil"
 )

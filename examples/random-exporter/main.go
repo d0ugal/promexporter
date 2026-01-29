@@ -11,11 +11,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/d0ugal/promexporter/app"
-	"github.com/d0ugal/promexporter/config"
-	"github.com/d0ugal/promexporter/logging"
-	promexporter_metrics "github.com/d0ugal/promexporter/metrics"
-	"github.com/d0ugal/promexporter/tracing"
+	"github.com/d0ugal/promexporter/v2/app"
+	"github.com/d0ugal/promexporter/v2/config"
+	"github.com/d0ugal/promexporter/v2/logging"
+	promexporter_metrics "github.com/d0ugal/promexporter/v2/metrics"
+	"github.com/d0ugal/promexporter/v2/tracing"
 	"github.com/prometheus/client_golang/prometheus"
 	"go.opentelemetry.io/otel/attribute"
 )
