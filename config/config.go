@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	yaml "gopkg.in/yaml.v3"
+	yaml "github.com/goccy/go-yaml"
 )
 
 // BaseConfig provides common configuration for all exporters
