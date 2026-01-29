@@ -3,7 +3,7 @@ package profiling
 import (
 	"log/slog"
 
-	"github.com/d0ugal/promexporter/config"
+	"github.com/d0ugal/promexporter/v2/config"
 	"github.com/grafana/pyroscope-go"
 )
 

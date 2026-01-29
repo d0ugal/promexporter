@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/d0ugal/promexporter/config"
+	"github.com/d0ugal/promexporter/v2/config"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
