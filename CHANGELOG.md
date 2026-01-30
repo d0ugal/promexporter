@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.0.1](https://github.com/d0ugal/promexporter/compare/v2.0.0...v2.0.1) (2026-01-30)
+
+
+### Bug Fixes
+
+* update all internal imports to use v2 module path ([f77c207](https://github.com/d0ugal/promexporter/commit/f77c2073d1e1334902a3a77bf97575bb5df1f600))
+* update module github.com/grpc-ecosystem/grpc-gateway/v2 to v2.27.7 ([ef21d6f](https://github.com/d0ugal/promexporter/commit/ef21d6f31f5d5ba3da7d03cdc3ff0a2d0774de86))
+* update module go.yaml.in/yaml/v2 to v3 ([21950b0](https://github.com/d0ugal/promexporter/commit/21950b0f98c94cb10ea2d602dbf04e0138b7d2de))
+* update module path to github.com/d0ugal/promexporter/v2 for Go semantic versioning ([d3af577](https://github.com/d0ugal/promexporter/commit/d3af577cd85f899fae0287be4068944a557274f4))
+
 ## [2.0.0](https://github.com/d0ugal/promexporter/compare/v1.14.26...v2.0.0) (2026-01-29)
 
 
