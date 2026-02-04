@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.1](https://github.com/d0ugal/promexporter/compare/v2.0.0...v2.0.1) (2026-02-04)
+
+
+### Bug Fixes
+
+* update all internal imports to use v2 module path ([f77c207](https://github.com/d0ugal/promexporter/commit/f77c2073d1e1334902a3a77bf97575bb5df1f600))
+* update dependency go to v1.25.7 ([a74e987](https://github.com/d0ugal/promexporter/commit/a74e9877d016ecd6cf2722ef16809819a0f658de))
+* update google.golang.org/genproto/googleapis/rpc digest to 546029d ([b0f35e7](https://github.com/d0ugal/promexporter/commit/b0f35e736d54426da3665a0f5bf356aad12dddce))
+* update google.golang.org/genproto/googleapis/rpc digest to ce8ad4c ([83e806d](https://github.com/d0ugal/promexporter/commit/83e806d1821767d78b51ee8bd09f7cb1ac294b4a))
+* update module github.com/gabriel-vasile/mimetype to v1.4.13 ([9330571](https://github.com/d0ugal/promexporter/commit/9330571f03bd308c5c9f8291b3b228f29f96beff))
+* update module github.com/grpc-ecosystem/grpc-gateway/v2 to v2.27.7 ([ef21d6f](https://github.com/d0ugal/promexporter/commit/ef21d6f31f5d5ba3da7d03cdc3ff0a2d0774de86))
+* update module go.yaml.in/yaml/v2 to v3 ([21950b0](https://github.com/d0ugal/promexporter/commit/21950b0f98c94cb10ea2d602dbf04e0138b7d2de))
+* update module path to github.com/d0ugal/promexporter/v2 for Go semantic versioning ([d3af577](https://github.com/d0ugal/promexporter/commit/d3af577cd85f899fae0287be4068944a557274f4))
+* update opentelemetry-go monorepo to v1.40.0 ([d7f881a](https://github.com/d0ugal/promexporter/commit/d7f881a26c66f4dad9ddade54a78c964eefd481e))
+* update opentelemetry-go-contrib monorepo to v0.65.0 ([af6813c](https://github.com/d0ugal/promexporter/commit/af6813c3d145a71c31047f060750d17d226a5dd4))
+
 ## [2.0.0](https://github.com/d0ugal/promexporter/compare/v1.14.26...v2.0.0) (2026-01-29)
 
 
