@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.2](https://github.com/d0ugal/promexporter/compare/v2.0.1...v2.0.2) (2026-02-13)
+
+
+### Bug Fixes
+
+* update dependency go to v1.26.0 ([04bea15](https://github.com/d0ugal/promexporter/commit/04bea15f8db0390f32aed9b31812107165255bf4))
+* update google.golang.org/genproto/googleapis/rpc digest to 4cfbd41 ([ef7e481](https://github.com/d0ugal/promexporter/commit/ef7e4817404510f3a5aeece286f588fa34f61229))
+* update module github.com/grpc-ecosystem/grpc-gateway/v2 to v2.27.8 ([50930ef](https://github.com/d0ugal/promexporter/commit/50930efcd762b3089b2ac3be1152fca49bbb41ab))
+* update module github.com/klauspost/compress to v1.18.4 ([80605ec](https://github.com/d0ugal/promexporter/commit/80605ec1ba0c419ab2347c724d0135d241fae46d))
+* update module golang.org/x/arch to v0.24.0 ([9922e5b](https://github.com/d0ugal/promexporter/commit/9922e5b56be2240e63d241b3ceaf7e95f100211e))
+* update module golang.org/x/crypto to v0.48.0 ([8b1091e](https://github.com/d0ugal/promexporter/commit/8b1091e161c78d2cfdff009d77aa232d14dab8b1))
+* update module golang.org/x/net to v0.50.0 ([17a93ae](https://github.com/d0ugal/promexporter/commit/17a93aee1566861e6e402ed6689e0db9a2fba975))
+* update module golang.org/x/sys to v0.41.0 ([c4ad64b](https://github.com/d0ugal/promexporter/commit/c4ad64b790a0a8a01146a29d280ffb5dd5dc1054))
+* update module google.golang.org/grpc to v1.79.0 ([42b4717](https://github.com/d0ugal/promexporter/commit/42b471724fd42f295790d781aa12dee9d35797ca))
+* update module google.golang.org/grpc to v1.79.1 ([133e0e3](https://github.com/d0ugal/promexporter/commit/133e0e360d48e2fbbe1fbe4cbe08d380412c5ad7))
+
 ## [2.0.1](https://github.com/d0ugal/promexporter/compare/v2.0.0...v2.0.1) (2026-02-04)
 
 
