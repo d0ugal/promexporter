@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/d0ugal/promexporter/v2/config"
+	"github.com/d0ugal/promexporter/config"
 )
 
 func main() {

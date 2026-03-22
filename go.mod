@@ -1,4 +1,4 @@
-module github.com/d0ugal/promexporter/v2
+module github.com/d0ugal/promexporter
 
 go 1.25.0
 
