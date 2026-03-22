@@ -1,5 +1,64 @@
 # Changelog
 
+## [2.0.0](https://github.com/d0ugal/promexporter/compare/v1.14.26...v2.0.0) (2026-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace unmaintained gopkg.in/yaml.v3 dependency with actively maintained github.com/goccy/go-yaml v1.19.2.
+
+### Bug Fixes
+
+* update all internal imports to use v2 module path ([f77c207](https://github.com/d0ugal/promexporter/commit/f77c2073d1e1334902a3a77bf97575bb5df1f600))
+* update dependency go to v1.25.7 ([a74e987](https://github.com/d0ugal/promexporter/commit/a74e9877d016ecd6cf2722ef16809819a0f658de))
+* update dependency go to v1.26.0 ([04bea15](https://github.com/d0ugal/promexporter/commit/04bea15f8db0390f32aed9b31812107165255bf4))
+* update dependency go to v1.26.1 ([2341e2e](https://github.com/d0ugal/promexporter/commit/2341e2e99cc3c666e56efbad33ce1c889fcb5620))
+* update google.golang.org/genproto/googleapis/rpc digest to 0b37fe3 ([a3d8ffd](https://github.com/d0ugal/promexporter/commit/a3d8ffd49b903397bab6bbc1cc8ec8134e396a79))
+* update google.golang.org/genproto/googleapis/rpc digest to 4cfbd41 ([ef7e481](https://github.com/d0ugal/promexporter/commit/ef7e4817404510f3a5aeece286f588fa34f61229))
+* update google.golang.org/genproto/googleapis/rpc digest to 546029d ([b0f35e7](https://github.com/d0ugal/promexporter/commit/b0f35e736d54426da3665a0f5bf356aad12dddce))
+* update google.golang.org/genproto/googleapis/rpc digest to 84a4fc4 ([b71454f](https://github.com/d0ugal/promexporter/commit/b71454f79a36aa4b9672888f61535432fc6c64e0))
+* update google.golang.org/genproto/googleapis/rpc digest to a57be14 ([387394e](https://github.com/d0ugal/promexporter/commit/387394e599ad6cfa49bb380883ca0e7ed68b4f6b))
+* update google.golang.org/genproto/googleapis/rpc digest to ce8ad4c ([83e806d](https://github.com/d0ugal/promexporter/commit/83e806d1821767d78b51ee8bd09f7cb1ac294b4a))
+* update google.golang.org/genproto/googleapis/rpc digest to d00831a ([c41797b](https://github.com/d0ugal/promexporter/commit/c41797bf2b77b48b878b25055fc6aa79736306d5))
+* update google.golang.org/genproto/googleapis/rpc digest to e3a33c9 ([723f5a4](https://github.com/d0ugal/promexporter/commit/723f5a487567c5c2c991945bc19172e2d24b91a5))
+* update module github.com/bytedance/gopkg to v0.1.4 ([e0b5e3d](https://github.com/d0ugal/promexporter/commit/e0b5e3ddb1429d55582de97cc7c15d464f2d1e2d))
+* update module github.com/gabriel-vasile/mimetype to v1.4.13 ([9330571](https://github.com/d0ugal/promexporter/commit/9330571f03bd308c5c9f8291b3b228f29f96beff))
+* update module github.com/gin-gonic/gin to v1.12.0 ([91b6dd4](https://github.com/d0ugal/promexporter/commit/91b6dd41c82569dfb652e1b7b143af6c432dcf33))
+* update module github.com/goccy/go-json to v0.10.6 ([1d468a4](https://github.com/d0ugal/promexporter/commit/1d468a46644a97c7c01d90b5b2e36035d6ebc427))
+* update module github.com/grpc-ecosystem/grpc-gateway/v2 to v2.27.7 ([ef21d6f](https://github.com/d0ugal/promexporter/commit/ef21d6f31f5d5ba3da7d03cdc3ff0a2d0774de86))
+* update module github.com/grpc-ecosystem/grpc-gateway/v2 to v2.27.8 ([50930ef](https://github.com/d0ugal/promexporter/commit/50930efcd762b3089b2ac3be1152fca49bbb41ab))
+* update module github.com/grpc-ecosystem/grpc-gateway/v2 to v2.28.0 ([73471bb](https://github.com/d0ugal/promexporter/commit/73471bb20c806e7ab6ca1391217824cf2c7dc160))
+* update module github.com/klauspost/compress to v1.18.4 ([80605ec](https://github.com/d0ugal/promexporter/commit/80605ec1ba0c419ab2347c724d0135d241fae46d))
+* update module github.com/klauspost/compress to v1.18.5 ([e64f3ed](https://github.com/d0ugal/promexporter/commit/e64f3ed0f5fee9cfab36aa60b7c9e539ea3ff7a6))
+* update module github.com/prometheus/procfs to v0.20.1 ([fdcaad4](https://github.com/d0ugal/promexporter/commit/fdcaad402a315a88fa34cfb4b48faa00abff5180))
+* update module go.opentelemetry.io/proto/otlp to v1.10.0 ([59f8dcc](https://github.com/d0ugal/promexporter/commit/59f8dcc56bfe9e4cdda1e58721bc555cf1cf43ed))
+* update module go.yaml.in/yaml/v2 to v2.4.4 ([8f734a4](https://github.com/d0ugal/promexporter/commit/8f734a49746247187c2b4a2e40aaa0ac8c870087))
+* update module go.yaml.in/yaml/v2 to v3 ([21950b0](https://github.com/d0ugal/promexporter/commit/21950b0f98c94cb10ea2d602dbf04e0138b7d2de))
+* update module golang.org/x/arch to v0.24.0 ([9922e5b](https://github.com/d0ugal/promexporter/commit/9922e5b56be2240e63d241b3ceaf7e95f100211e))
+* update module golang.org/x/arch to v0.25.0 ([4db41e7](https://github.com/d0ugal/promexporter/commit/4db41e7cf7094be568b7f13f4cb40d2781d305a7))
+* update module golang.org/x/crypto to v0.48.0 ([8b1091e](https://github.com/d0ugal/promexporter/commit/8b1091e161c78d2cfdff009d77aa232d14dab8b1))
+* update module golang.org/x/crypto to v0.49.0 ([0c183c9](https://github.com/d0ugal/promexporter/commit/0c183c9c3901f51c2ce1fef99209ce024efa407f))
+* update module golang.org/x/net to v0.50.0 ([17a93ae](https://github.com/d0ugal/promexporter/commit/17a93aee1566861e6e402ed6689e0db9a2fba975))
+* update module golang.org/x/net to v0.52.0 ([d2a90c5](https://github.com/d0ugal/promexporter/commit/d2a90c5092bf415e39981bdf54102ba2ba6885e4))
+* update module golang.org/x/sys to v0.41.0 ([c4ad64b](https://github.com/d0ugal/promexporter/commit/c4ad64b790a0a8a01146a29d280ffb5dd5dc1054))
+* update module golang.org/x/sys to v0.42.0 ([b5f8a4b](https://github.com/d0ugal/promexporter/commit/b5f8a4bdfd47ed66a76a3442b10496c0eb1ec284))
+* update module golang.org/x/text to v0.35.0 ([bef0447](https://github.com/d0ugal/promexporter/commit/bef0447f23e42e5eadb581fb06b8590249961106))
+* update module google.golang.org/grpc to v1.79.0 ([42b4717](https://github.com/d0ugal/promexporter/commit/42b471724fd42f295790d781aa12dee9d35797ca))
+* update module google.golang.org/grpc to v1.79.1 ([133e0e3](https://github.com/d0ugal/promexporter/commit/133e0e360d48e2fbbe1fbe4cbe08d380412c5ad7))
+* update module google.golang.org/grpc to v1.79.2 ([19a0cfc](https://github.com/d0ugal/promexporter/commit/19a0cfc0defaafba6fe7801c0b3cb8eef59b362e))
+* update module google.golang.org/grpc to v1.79.3 ([14d9486](https://github.com/d0ugal/promexporter/commit/14d9486193b0a9be75ecd9e85bf4fe85684ec370))
+* update module path to github.com/d0ugal/promexporter/v2 for Go semantic versioning ([d3af577](https://github.com/d0ugal/promexporter/commit/d3af577cd85f899fae0287be4068944a557274f4))
+* update opentelemetry-go monorepo to v1.40.0 ([d7f881a](https://github.com/d0ugal/promexporter/commit/d7f881a26c66f4dad9ddade54a78c964eefd481e))
+* update opentelemetry-go monorepo to v1.42.0 ([f79afc4](https://github.com/d0ugal/promexporter/commit/f79afc4495e7570b8de9572546f396a7174ba655))
+* update opentelemetry-go-contrib monorepo to v0.65.0 ([af6813c](https://github.com/d0ugal/promexporter/commit/af6813c3d145a71c31047f060750d17d226a5dd4))
+* update opentelemetry-go-contrib monorepo to v0.67.0 ([8548ebf](https://github.com/d0ugal/promexporter/commit/8548ebfee40d6acb9c5950a9a1be5db3dfc68c1f))
+* update vulnerable dependencies in random-exporter example ([941bb0b](https://github.com/d0ugal/promexporter/commit/941bb0b4932484873d4e6e118a36e4b41d1f0a93))
+
+
+### Code Refactoring
+
+* replace abandoned gopkg.in/yaml.v3 with goccy/go-yaml ([6ad25c1](https://github.com/d0ugal/promexporter/commit/6ad25c18e7c2dab9e28f455bde43e6c24be0e9b6))
+
 ## [2.0.2](https://github.com/d0ugal/promexporter/compare/v2.0.1...v2.0.2) (2026-02-13)
 
 
