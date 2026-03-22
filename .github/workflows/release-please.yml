@@ -22,8 +22,6 @@ jobs:
     - uses: googleapis/release-please-action@v4
       id: release_please
       with:
-        release-type: go
-        path: .
         token: ${{ secrets.RELEASE_TOKEN }}
         default-branch: main
         fork: false
