@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.28](https://github.com/d0ugal/promexporter/compare/v1.14.27...v1.14.28) (2026-03-24)
+
+
+### Bug Fixes
+
+* update module github.com/pelletier/go-toml/v2 to v2.3.0 ([afc7161](https://github.com/d0ugal/promexporter/commit/afc7161d48bf62ea011e9ddd9c9315a299b6a23d))
+
 ## [2.0.2](https://github.com/d0ugal/promexporter/compare/v2.0.1...v2.0.2) (2026-02-13)
 
 
