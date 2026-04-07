@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.36](https://github.com/d0ugal/promexporter/compare/v1.14.35...v1.14.36) (2026-04-07)
+
+
+### Bug Fixes
+
+* update dependency go to v1.26.2 ([e16d31f](https://github.com/d0ugal/promexporter/commit/e16d31f24d7ad86904d9a995fac9c2791169d1b4))
+
 ## [1.14.35](https://github.com/d0ugal/promexporter/compare/v1.14.34...v1.14.35) (2026-04-07)
 
 
