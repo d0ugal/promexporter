@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.37](https://github.com/d0ugal/promexporter/compare/v1.14.36...v1.14.37) (2026-04-08)
+
+
+### Bug Fixes
+
+* update module github.com/mattn/go-isatty to v0.0.21 ([c63cbfd](https://github.com/d0ugal/promexporter/commit/c63cbfd23ac0e06d9de9f89763aa60190b806653))
+* update module golang.org/x/sys to v0.43.0 ([7f211a5](https://github.com/d0ugal/promexporter/commit/7f211a5747d7518f35c75a97cc723b7903d337d2))
+
 ## [1.14.36](https://github.com/d0ugal/promexporter/compare/v1.14.35...v1.14.36) (2026-04-07)
 
 
