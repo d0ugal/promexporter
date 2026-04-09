@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.38](https://github.com/d0ugal/promexporter/compare/v1.14.37...v1.14.38) (2026-04-09)
+
+
+### Bug Fixes
+
+* bump otel to v1.43.0 in random-exporter to fix CVE-2026-39883 ([8c5ab93](https://github.com/d0ugal/promexporter/commit/8c5ab932f96b3671b23f32168a80675cfecd2129))
+* update module golang.org/x/crypto to v0.50.0 ([db0fa3d](https://github.com/d0ugal/promexporter/commit/db0fa3dbf6ab312078d8b303a5be76ecd8241a4f))
+* update module golang.org/x/text to v0.36.0 ([c99d3e2](https://github.com/d0ugal/promexporter/commit/c99d3e2aee86bc5da1b9adbbe0d4e40c25c373f8))
+
 ## [1.14.37](https://github.com/d0ugal/promexporter/compare/v1.14.36...v1.14.37) (2026-04-08)
 
 
