@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.40](https://github.com/d0ugal/promexporter/compare/v1.14.39...v1.14.40) (2026-04-10)
+
+
+### Bug Fixes
+
+* update module golang.org/x/arch to v0.26.0 ([6e83a83](https://github.com/d0ugal/promexporter/commit/6e83a8301712f53a0243385e79e193713163b4bb))
+
 ## [1.14.39](https://github.com/d0ugal/promexporter/compare/v1.14.38...v1.14.39) (2026-04-09)
 
 
