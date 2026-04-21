@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.43](https://github.com/d0ugal/promexporter/compare/v1.14.42...v1.14.43) (2026-04-21)
+
+
+### Bug Fixes
+
+* remove trailing blank line in commits.yml ([9be0611](https://github.com/d0ugal/promexporter/commit/9be0611f844332829dcbcd1e272d0c7e68509e11))
+
 ## [1.14.42](https://github.com/d0ugal/promexporter/compare/v1.14.41...v1.14.42) (2026-04-20)
 
 
