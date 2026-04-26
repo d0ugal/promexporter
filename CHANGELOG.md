@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.44](https://github.com/d0ugal/promexporter/compare/v1.14.43...v1.14.44) (2026-04-26)
+
+
+### Bug Fixes
+
+* use RELEASE_TOKEN in auto-format workflow to trigger CI ([1a03104](https://github.com/d0ugal/promexporter/commit/1a03104ada70687cba9c147f82d8a9782af4889a))
+
 ## [1.14.43](https://github.com/d0ugal/promexporter/compare/v1.14.42...v1.14.43) (2026-04-21)
 
 
