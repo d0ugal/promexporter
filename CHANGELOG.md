@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.46](https://github.com/d0ugal/promexporter/compare/v1.14.45...v1.14.46) (2026-04-27)
+
+
+### Bug Fixes
+
+* update google.golang.org/genproto/googleapis/rpc digest to 7cedc36 ([a90a715](https://github.com/d0ugal/promexporter/commit/a90a715b6943cd698bab94467c3f705f216135a6))
+* update module github.com/bytedance/sonic to v1.15.1 ([553e8a6](https://github.com/d0ugal/promexporter/commit/553e8a60e4965108afa9cc63f0308aa0e3c9b45d))
+
 ## [1.14.45](https://github.com/d0ugal/promexporter/compare/v1.14.44...v1.14.45) (2026-04-27)
 
 
