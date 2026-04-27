@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.45](https://github.com/d0ugal/promexporter/compare/v1.14.44...v1.14.45) (2026-04-27)
+
+
+### Bug Fixes
+
+* update module github.com/mattn/go-isatty to v0.0.22 ([4856b2e](https://github.com/d0ugal/promexporter/commit/4856b2e014263559bd894a5a842c4c0221df5ebf))
+
 ## [1.14.44](https://github.com/d0ugal/promexporter/compare/v1.14.43...v1.14.44) (2026-04-26)
 
 
