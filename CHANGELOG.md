@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.47](https://github.com/d0ugal/promexporter/compare/v1.14.46...v1.14.47) (2026-04-30)
+
+
+### Bug Fixes
+
+* update module github.com/cloudwego/base64x to v0.1.7 ([6f499aa](https://github.com/d0ugal/promexporter/commit/6f499aa0965e6634c4264482d12d7d595f21763d))
+* update module github.com/klauspost/compress to v1.18.6 ([c9cd84d](https://github.com/d0ugal/promexporter/commit/c9cd84d9d9652374c026cb01f13f7529ef988d83))
+* update module go.mongodb.org/mongo-driver/v2 to v2.6.0 ([d1a7046](https://github.com/d0ugal/promexporter/commit/d1a7046b4e6b9a0b6ef0dc8509a595b8959fbfb4))
+
 ## [1.14.46](https://github.com/d0ugal/promexporter/compare/v1.14.45...v1.14.46) (2026-04-27)
 
 
