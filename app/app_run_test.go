@@ -49,6 +49,7 @@ func TestRun_GracefulShutdownReturnsNil(t *testing.T) {
 	if err != nil {
 		t.Fatalf("FindProcess: %v", err)
 	}
+
 	if err := p.Signal(syscall.SIGTERM); err != nil {
 		t.Fatalf("Signal SIGTERM: %v", err)
 	}
