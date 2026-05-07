@@ -2,7 +2,9 @@ package app
 
 import (
 	"context"
+	"errors"
 	"log/slog"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -231,8 +233,9 @@ func (a *App) Run() error {
 		}
 	}()
 
-	// Start server
-	if err := a.server.Start(); err != nil {
+	// Start server. http.ErrServerClosed is the expected return after a
+	// graceful shutdown, so don't treat it as a failure.
+	if err := a.server.Start(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		slog.Error("Server failed", "error", err)
 		return err
 	}
