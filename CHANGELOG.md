@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.52](https://github.com/d0ugal/promexporter/compare/v1.14.51...v1.14.52) (2026-05-07)
+
+
+### Bug Fixes
+
+* don't treat ErrServerClosed as a Run() failure ([aaefdd7](https://github.com/d0ugal/promexporter/commit/aaefdd7c644b8669e42740b10f86bcdfa3044331))
+
 ## [1.14.51](https://github.com/d0ugal/promexporter/compare/v1.14.50...v1.14.51) (2026-05-06)
 
 
