@@ -185,7 +185,16 @@ func (s *Server) handleRoot(c *gin.Context) {
 }
 
 func (s *Server) handleHealth(c *gin.Context) {
-	versionInfo := version.Get()
+	// Prefer the version info supplied via WithVersionInfo so the health
+	// endpoint reports the same numbers as the dashboard. Fall back to the
+	// build-time defaults only when the consumer didn't provide any.
+	var versionInfo version.Info
+	if s.versionInfo != nil {
+		versionInfo = *s.versionInfo
+	} else {
+		versionInfo = version.Get()
+	}
+
 	response := gin.H{
 		"status":     "healthy",
 		"timestamp":  time.Now().Unix(),
