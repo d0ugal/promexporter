@@ -124,20 +124,26 @@ func TestGetTracer_NonNilWhenDisabled(t *testing.T) {
 	// return a usable span whose End() / SetAttributes() / etc. are safe.
 	ctx, span := func() (any, *struct{ ok bool }) {
 		// Use deferred recovery so a panic doesn't blow up the whole test.
-		var c any
-		var s *struct{ ok bool }
+		var (
+			c any
+			s *struct{ ok bool }
+		)
+
 		defer func() {
 			if r := recover(); r != nil {
 				t.Fatalf("NewCollectorSpan panicked on disabled tracer: %v", r)
 			}
 		}()
+
 		cs := tracer.NewCollectorSpan(nil, "test-collector", "test-op")
 		if cs == nil {
 			t.Fatal("NewCollectorSpan returned nil on disabled tracer")
 		}
+
 		cs.End()
 		c = cs.Context()
 		s = &struct{ ok bool }{ok: true}
+
 		return c, s
 	}()
 	_ = ctx
