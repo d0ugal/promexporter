@@ -91,7 +91,10 @@ func (a *App) WithVersionInfo(version, commit, buildDate string) *App {
 	return a
 }
 
-// GetTracer returns the tracer instance (may be nil if tracing is disabled)
+// GetTracer returns the tracer instance. After Build() it is always non-nil:
+// when tracing is disabled it returns a no-op Tracer whose methods do nothing
+// and whose IsEnabled() reports false. Consumers can therefore call
+// tracer.NewCollectorSpan(...) directly without a nil check.
 func (a *App) GetTracer() *tracing.Tracer {
 	return a.tracer
 }
@@ -105,26 +108,32 @@ func (a *App) Build() *App {
 		Format: loggingConfig.Format,
 	})
 
-	// Initialize tracing
+	// Initialize tracing. NewTracer always returns a usable Tracer — when
+	// tracing is disabled (or initialisation fails) the returned value is a
+	// no-op whose IsEnabled() reports false. Storing it unconditionally lets
+	// consumers call GetTracer().NewCollectorSpan(...) without a nil check.
 	tracingConfig := a.config.GetTracing()
-	if tracingConfig.IsEnabled() {
-		tracer, err := tracing.NewTracer(tracingConfig)
-		if err != nil {
-			slog.Error("Failed to initialize tracing", "error", err)
-			// Continue without tracing rather than failing
+
+	tracer, err := tracing.NewTracer(tracingConfig)
+	if err != nil {
+		slog.Error("Failed to initialize tracing", "error", err)
+
+		a.tracer = &tracing.Tracer{}
+	} else {
+		a.tracer = tracer
+	}
+
+	if tracingConfig.IsEnabled() && a.tracer.IsEnabled() {
+		slog.Info("Tracing enabled", "service_name", tracingConfig.ServiceName)
+
+		// Start runtime metrics collection (requires tracing to be enabled
+		// because the OTel runtime instrumentation pushes via the global
+		// meter provider that NewTracer sets up).
+		// This automatically collects Go runtime metrics (GC, memory, goroutines, etc.)
+		if err := runtime.Start(runtime.WithMinimumReadMemStatsInterval(time.Second)); err != nil {
+			slog.Warn("Failed to start runtime metrics collection", "error", err)
 		} else {
-			a.tracer = tracer
-
-			slog.Info("Tracing enabled", "service_name", tracingConfig.ServiceName)
-
-			// Start runtime metrics collection (requires tracing to be enabled)
-			// This automatically collects Go runtime metrics (GC, memory, goroutines, etc.)
-			if err := runtime.Start(runtime.WithMinimumReadMemStatsInterval(time.Second)); err != nil {
-				slog.Warn("Failed to start runtime metrics collection", "error", err)
-				// Continue without runtime metrics rather than failing
-			} else {
-				slog.Info("Runtime metrics collection enabled")
-			}
+			slog.Info("Runtime metrics collection enabled")
 		}
 	}
 

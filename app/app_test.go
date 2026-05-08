@@ -85,6 +85,65 @@ test_exporter_info{build_date="2023-01-01T00:00:00Z",commit="abc123",version="v1
 	}
 }
 
+// TestGetTracer_NonNilWhenDisabled locks in the contract that GetTracer()
+// always returns a usable Tracer after Build(), even when tracing is disabled.
+// This lets consumers call tracer.NewCollectorSpan(...) directly without a
+// nil-check, simplifying every collector across the cohort.
+func TestGetTracer_NonNilWhenDisabled(t *testing.T) {
+	registry := prometheus.NewRegistry()
+
+	mockCfg := &mockConfig{
+		logging: &config.LoggingConfig{
+			Level:  "info",
+			Format: "json",
+		},
+		server: &config.ServerConfig{
+			Host: "localhost",
+			Port: 8080,
+		},
+	}
+
+	metricsRegistry := metrics.NewRegistry("tracer_test_info")
+	registry.MustRegister(metricsRegistry.VersionInfo)
+
+	app := New("test-exporter").
+		WithConfig(mockCfg).
+		WithMetrics(metricsRegistry).
+		Build()
+
+	tracer := app.GetTracer()
+	if tracer == nil {
+		t.Fatal("GetTracer() returned nil; expected a usable no-op tracer")
+	}
+
+	if tracer.IsEnabled() {
+		t.Error("expected IsEnabled() to be false when tracing config is disabled")
+	}
+
+	// Calling NewCollectorSpan on the no-op tracer must not panic and must
+	// return a usable span whose End() / SetAttributes() / etc. are safe.
+	ctx, span := func() (any, *struct{ ok bool }) {
+		// Use deferred recovery so a panic doesn't blow up the whole test.
+		var c any
+		var s *struct{ ok bool }
+		defer func() {
+			if r := recover(); r != nil {
+				t.Fatalf("NewCollectorSpan panicked on disabled tracer: %v", r)
+			}
+		}()
+		cs := tracer.NewCollectorSpan(nil, "test-collector", "test-op")
+		if cs == nil {
+			t.Fatal("NewCollectorSpan returned nil on disabled tracer")
+		}
+		cs.End()
+		c = cs.Context()
+		s = &struct{ ok bool }{ok: true}
+		return c, s
+	}()
+	_ = ctx
+	_ = span
+}
+
 func TestWithoutVersionInfo(t *testing.T) {
 	// Create a custom registry for this test
 	registry := prometheus.NewRegistry()
