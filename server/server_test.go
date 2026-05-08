@@ -24,8 +24,8 @@ func (m *minimalConfig) GetDisplayConfig() map[string]interface{} {
 func (m *minimalConfig) GetLogging() *config.LoggingConfig {
 	return &config.LoggingConfig{Level: "info", Format: "json"}
 }
-func (m *minimalConfig) GetServer() *config.ServerConfig    { return m.server }
-func (m *minimalConfig) GetTracing() *config.TracingConfig  { return &config.TracingConfig{} }
+func (m *minimalConfig) GetServer() *config.ServerConfig   { return m.server }
+func (m *minimalConfig) GetTracing() *config.TracingConfig { return &config.TracingConfig{} }
 func (m *minimalConfig) GetProfiling() *config.ProfilingConfig {
 	return &config.ProfilingConfig{}
 }
