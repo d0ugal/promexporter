@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.14.54](https://github.com/d0ugal/promexporter/compare/v1.14.53...v1.14.54) (2026-05-09)
+
+
+### Bug Fixes
+
+* **server:** /health reports configured version, not build-time ([2e34d85](https://github.com/d0ugal/promexporter/commit/2e34d853e714f33f3a65c1abdb2bcfe468413241))
+* update module golang.org/x/arch to v0.27.0 ([c101f1b](https://github.com/d0ugal/promexporter/commit/c101f1b26611ab155ee647f98688e2be59d56c1a))
+* update module golang.org/x/crypto to v0.51.0 ([3401066](https://github.com/d0ugal/promexporter/commit/340106641ceb8aa769ef75e16338dbe584393b26))
+* update module golang.org/x/net to v0.54.0 ([4f9eba4](https://github.com/d0ugal/promexporter/commit/4f9eba47bbd60a20277215e2c4560a46d1f54e8c))
+* update module golang.org/x/sys to v0.44.0 ([40376c1](https://github.com/d0ugal/promexporter/commit/40376c1e1d55e7a56f0e9235583f6e1f597a9858))
+* update module golang.org/x/text to v0.37.0 ([43f4418](https://github.com/d0ugal/promexporter/commit/43f4418becfa82a75fa736f91a54fd0a694bf603))
+
 ## [1.14.53](https://github.com/d0ugal/promexporter/compare/v1.14.52...v1.14.53) (2026-05-07)
 
 
