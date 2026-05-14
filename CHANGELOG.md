@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.56](https://github.com/d0ugal/promexporter/compare/v1.14.55...v1.14.56) (2026-05-14)
+
+
+### Bug Fixes
+
+* update module google.golang.org/grpc to v1.81.1 ([1d6e0da](https://github.com/d0ugal/promexporter/commit/1d6e0da5de29346cb83fb2b0378c82f76afc951f))
+
 ## [1.14.55](https://github.com/d0ugal/promexporter/compare/v1.14.54...v1.14.55) (2026-05-11)
 
 
