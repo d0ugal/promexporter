@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.57](https://github.com/d0ugal/promexporter/compare/v1.14.56...v1.14.57) (2026-05-19)
+
+
+### Bug Fixes
+
+* update google.golang.org/genproto/googleapis/rpc digest to 037a81a ([a3cfa36](https://github.com/d0ugal/promexporter/commit/a3cfa3617aeae6646d7c0710a7cfbbee815873f9))
+* update google.golang.org/genproto/googleapis/rpc digest to aa98bba ([e2f2911](https://github.com/d0ugal/promexporter/commit/e2f291114763f362205df69038e679f539c17eef))
+
 ## [1.14.56](https://github.com/d0ugal/promexporter/compare/v1.14.55...v1.14.56) (2026-05-14)
 
 
