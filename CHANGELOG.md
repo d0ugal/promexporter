@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.58](https://github.com/d0ugal/promexporter/compare/v1.14.57...v1.14.58) (2026-05-22)
+
+
+### Bug Fixes
+
+* update module golang.org/x/crypto to v0.52.0 ([c14cecc](https://github.com/d0ugal/promexporter/commit/c14ceccffefc57fe70e1c85a526fe758a7015485))
+* update module golang.org/x/net to v0.55.0 ([8eb5fed](https://github.com/d0ugal/promexporter/commit/8eb5fed509760428f0979b20a7e156fbecd4748c))
+* update module golang.org/x/sys to v0.45.0 ([46ab573](https://github.com/d0ugal/promexporter/commit/46ab5731007bfa0637a87a4411e73dc37310ccf8))
+
 ## [1.14.57](https://github.com/d0ugal/promexporter/compare/v1.14.56...v1.14.57) (2026-05-19)
 
 
