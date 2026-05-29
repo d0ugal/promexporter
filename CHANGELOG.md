@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.62](https://github.com/d0ugal/promexporter/compare/v1.14.61...v1.14.62) (2026-05-29)
+
+
+### Bug Fixes
+
+* update module github.com/prometheus/common to v0.68.0 ([c680fda](https://github.com/d0ugal/promexporter/commit/c680fdadd5183f68bf0617c1d1c0b321afd33a03))
+
 ## [1.14.61](https://github.com/d0ugal/promexporter/compare/v1.14.60...v1.14.61) (2026-05-28)
 
 
