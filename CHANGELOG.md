@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.63](https://github.com/d0ugal/promexporter/compare/v1.14.62...v1.14.63) (2026-06-03)
+
+
+### Bug Fixes
+
+* update go toolchain directive to v1.26.4 ([f79e8d3](https://github.com/d0ugal/promexporter/commit/f79e8d331aa2c4f9d3e92e8c1b02205a146b5e71))
+* update module github.com/go-playground/validator/v10 to v10.30.3 ([45848c3](https://github.com/d0ugal/promexporter/commit/45848c3272fa918bd531a628daeb6661579ea898))
+* update module github.com/prometheus/common to v0.68.1 ([40b4b05](https://github.com/d0ugal/promexporter/commit/40b4b054680208d1023f8d48fd758e5f8ccecb2e))
+
 ## [1.14.62](https://github.com/d0ugal/promexporter/compare/v1.14.61...v1.14.62) (2026-05-29)
 
 
