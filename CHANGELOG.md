@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.64](https://github.com/d0ugal/promexporter/compare/v1.14.63...v1.14.64) (2026-06-04)
+
+
+### Bug Fixes
+
+* update module github.com/bytedance/sonic to v1.15.2 ([e7fa360](https://github.com/d0ugal/promexporter/commit/e7fa3609d79293680ef65adc6b913efc168eb798))
+
 ## [1.14.63](https://github.com/d0ugal/promexporter/compare/v1.14.62...v1.14.63) (2026-06-03)
 
 
