@@ -188,14 +188,14 @@ func (rc *RandomCollector) Start(ctx context.Context) {
 	go func() {
 		ticker := time.NewTicker(rc.config.Random.CollectionInterval.Duration)
 		defer ticker.Stop()
-		
-		slog.Info("Starting metric collection loop", 
+
+		slog.Info("Starting metric collection loop",
 			"interval", rc.config.Random.CollectionInterval.Duration,
 			"metric_count", rc.config.Random.MetricCount,
 			"enable_errors", rc.config.Random.EnableRandomErrors,
 			"error_probability", rc.config.Random.ErrorProbability,
 		)
-		
+
 		for {
 			select {
 			case <-ctx.Done():
@@ -304,7 +304,7 @@ func (rc *RandomCollector) generateCounterMetrics(ctx context.Context, span *tra
 
 		rateIncrement := rand.Float64() * 5
 		rc.metrics.RandomCounterRate.With(prometheus.Labels{
-			"service":  service,
+			"service":   service,
 			"rate_type": rateType,
 		}).Add(rateIncrement)
 	}
@@ -369,7 +369,7 @@ func (rc *RandomCollector) generateGaugeMetrics(ctx context.Context, span *traci
 func (rc *RandomCollector) generateHistogramMetrics(ctx context.Context, span *tracing.CollectorSpan) error {
 	tracer := rc.app.GetTracer()
 	var histogramSpan *tracing.CollectorSpan
-	
+
 	if tracer != nil && tracer.IsEnabled() {
 		histogramSpan = tracer.NewCollectorSpan(ctx, "random-collector", "generate-histograms")
 		defer histogramSpan.End()
@@ -412,7 +412,7 @@ func (rc *RandomCollector) generateHistogramMetrics(ctx context.Context, span *t
 func (rc *RandomCollector) generateSummaryMetrics(ctx context.Context, span *tracing.CollectorSpan) error {
 	tracer := rc.app.GetTracer()
 	var summarySpan *tracing.CollectorSpan
-	
+
 	if tracer != nil && tracer.IsEnabled() {
 		summarySpan = tracer.NewCollectorSpan(ctx, "random-collector", "generate-summaries")
 		defer summarySpan.End()
@@ -455,7 +455,7 @@ func (rc *RandomCollector) generateSummaryMetrics(ctx context.Context, span *tra
 func (rc *RandomCollector) generateInfoMetrics(ctx context.Context, span *tracing.CollectorSpan) error {
 	tracer := rc.app.GetTracer()
 	var infoSpan *tracing.CollectorSpan
-	
+
 	if tracer != nil && tracer.IsEnabled() {
 		infoSpan = tracer.NewCollectorSpan(ctx, "random-collector", "generate-info")
 		defer infoSpan.End()
@@ -478,7 +478,7 @@ func (rc *RandomCollector) generateInfoMetrics(ctx context.Context, span *tracin
 // loadFromEnv loads configuration from environment variables
 func loadFromEnv() (*RandomExporterConfig, error) {
 	cfg := &RandomExporterConfig{}
-	
+
 	// Load base configuration from environment
 	baseConfig := &cfg.BaseConfig
 
@@ -536,7 +536,7 @@ func loadFromEnv() (*RandomExporterConfig, error) {
 	} else {
 		cfg.Random.CollectionInterval = config.Duration{Duration: time.Second * 10}
 	}
-	
+
 	if countStr := os.Getenv("RANDOM_METRIC_COUNT"); countStr != "" {
 		if count, err := parseInt(countStr); err != nil {
 			return nil, fmt.Errorf("invalid metric count: %w", err)
@@ -546,13 +546,13 @@ func loadFromEnv() (*RandomExporterConfig, error) {
 	} else {
 		cfg.Random.MetricCount = 20
 	}
-	
+
 	if enableErrorsStr := os.Getenv("RANDOM_ENABLE_ERRORS"); enableErrorsStr != "" {
 		cfg.Random.EnableRandomErrors = enableErrorsStr == "true"
 	} else {
 		cfg.Random.EnableRandomErrors = false
 	}
-	
+
 	if probStr := os.Getenv("RANDOM_ERROR_PROBABILITY"); probStr != "" {
 		if prob, err := parseFloat(probStr); err != nil {
 			return nil, fmt.Errorf("invalid error probability: %w", err)
