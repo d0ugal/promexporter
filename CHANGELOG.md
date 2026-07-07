@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.65](https://github.com/d0ugal/promexporter/compare/v1.14.64...v1.14.65) (2026-07-07)
+
+
+### Bug Fixes
+
+* **examples:** bump golang.org/x/crypto and x/net to patch CVEs ([8459823](https://github.com/d0ugal/promexporter/commit/84598233d04f5a854e6cf074865d9b0b38f07d5c))
+* update module github.com/grafana/pyroscope-go to v1.4.0 ([f174908](https://github.com/d0ugal/promexporter/commit/f1749081597a28fa7f8ebad5d2097782ed383d8b))
+
 ## [1.14.64](https://github.com/d0ugal/promexporter/compare/v1.14.63...v1.14.64) (2026-06-04)
 
 
