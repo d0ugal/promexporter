@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.66](https://github.com/d0ugal/promexporter/compare/v1.14.65...v1.14.66) (2026-07-08)
+
+
+### Bug Fixes
+
+* update go toolchain directive to v1.26.5 ([c4de87a](https://github.com/d0ugal/promexporter/commit/c4de87ac17a8d29cde2f29f82806c4a2429172e3))
+
 ## [1.14.65](https://github.com/d0ugal/promexporter/compare/v1.14.64...v1.14.65) (2026-07-07)
 
 
