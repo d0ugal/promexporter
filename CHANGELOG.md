@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.67](https://github.com/d0ugal/promexporter/compare/v1.14.66...v1.14.67) (2026-07-09)
+
+
+### Bug Fixes
+
+* update module github.com/grafana/pyroscope-go to v1.4.1 ([cc419b1](https://github.com/d0ugal/promexporter/commit/cc419b1c46afed62b057e6ab56c3e88be2f3ddb2))
+
 ## [1.14.66](https://github.com/d0ugal/promexporter/compare/v1.14.65...v1.14.66) (2026-07-08)
 
 
