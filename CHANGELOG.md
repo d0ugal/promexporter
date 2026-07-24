@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.68](https://github.com/d0ugal/promexporter/compare/v1.14.67...v1.14.68) (2026-07-24)
+
+
+### Bug Fixes
+
+* update module github.com/prometheus/client_golang to v1.24.0 ([eb9d748](https://github.com/d0ugal/promexporter/commit/eb9d748f2909b0fdec0368d7b114a26cc24420ef))
+* update module github.com/prometheus/client_golang to v1.24.1 ([#422](https://github.com/d0ugal/promexporter/issues/422)) ([357308e](https://github.com/d0ugal/promexporter/commit/357308efea8c8400ec478d3e29b029aac79ee66d))
+
 ## [1.14.67](https://github.com/d0ugal/promexporter/compare/v1.14.66...v1.14.67) (2026-07-09)
 
 
