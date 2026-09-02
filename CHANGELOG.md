@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.14.70](https://github.com/d0ugal/promexporter/compare/v1.14.69...v1.14.70) (2026-09-02)
+
+
+### Bug Fixes
+
+* update go toolchain directive to v1.26.6 ([#430](https://github.com/d0ugal/promexporter/issues/430)) ([4b393bc](https://github.com/d0ugal/promexporter/commit/4b393bcf32c922442129c173572ce66acd827cb1))
+* update go toolchain directive to v1.26.7 ([#434](https://github.com/d0ugal/promexporter/issues/434)) ([9b6d43f](https://github.com/d0ugal/promexporter/commit/9b6d43f77690fd0aefa56ccf6d3334e4662bcfb1))
+* update go toolchain directive to v1.27.0 ([#435](https://github.com/d0ugal/promexporter/issues/435)) ([9a1dbf2](https://github.com/d0ugal/promexporter/commit/9a1dbf25f62bc5d3307373277a8013a2e553e41c))
+* update go toolchain directive to v1.27.1 ([#441](https://github.com/d0ugal/promexporter/issues/441)) ([fce3bd3](https://github.com/d0ugal/promexporter/commit/fce3bd3dfb01acca1f5aa0b06a91a04790604dfd))
+* update opentelemetry-go monorepo to v1.46.0 ([#438](https://github.com/d0ugal/promexporter/issues/438)) ([e4389fe](https://github.com/d0ugal/promexporter/commit/e4389fe3d992dc0b328c7ddcd87872b6f3322e3c))
+* update opentelemetry-go-contrib monorepo to v0.71.0 ([#439](https://github.com/d0ugal/promexporter/issues/439)) ([4f3e07a](https://github.com/d0ugal/promexporter/commit/4f3e07a0a6825ad65257b4541280f5ad93b44bcb))
+
 ## [1.14.69](https://github.com/d0ugal/promexporter/compare/v1.14.68...v1.14.69) (2026-08-12)
 
 
