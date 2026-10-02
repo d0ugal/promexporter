@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.72](https://github.com/d0ugal/promexporter/compare/v1.14.71...v1.14.72) (2026-10-02)
+
+
+### Bug Fixes
+
+* update opentelemetry-go monorepo to v1.47.0 ([#451](https://github.com/d0ugal/promexporter/issues/451)) ([f1fbae5](https://github.com/d0ugal/promexporter/commit/f1fbae53c30634fce3eaad13a98331813b3a1735))
+* update opentelemetry-go-contrib monorepo to v0.72.0 ([#453](https://github.com/d0ugal/promexporter/issues/453)) ([3d978d4](https://github.com/d0ugal/promexporter/commit/3d978d419876eaca83c574091d0b25a85c52b4a2))
+
 ## [1.14.71](https://github.com/d0ugal/promexporter/compare/v1.14.70...v1.14.71) (2026-10-01)
 
 
