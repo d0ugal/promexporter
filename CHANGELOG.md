@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.14.72](https://github.com/d0ugal/promexporter/compare/v1.14.71...v1.14.72) (2026-10-09)
+
+
+### Bug Fixes
+
+* update go toolchain directive to v1.27.2 ([#456](https://github.com/d0ugal/promexporter/issues/456)) ([a7eabd2](https://github.com/d0ugal/promexporter/commit/a7eabd253886d5767b22018ba0bf99626d10d00e))
+* update module github.com/prometheus/client_golang to v1.25.0 ([#455](https://github.com/d0ugal/promexporter/issues/455)) ([e979e75](https://github.com/d0ugal/promexporter/commit/e979e756ec741ab04b0f7cc4694bf12a6fe3c10d))
+* update opentelemetry-go monorepo to v1.47.0 ([#451](https://github.com/d0ugal/promexporter/issues/451)) ([f1fbae5](https://github.com/d0ugal/promexporter/commit/f1fbae53c30634fce3eaad13a98331813b3a1735))
+* update opentelemetry-go-contrib monorepo to v0.72.0 ([#453](https://github.com/d0ugal/promexporter/issues/453)) ([3d978d4](https://github.com/d0ugal/promexporter/commit/3d978d419876eaca83c574091d0b25a85c52b4a2))
+
 ## [1.14.71](https://github.com/d0ugal/promexporter/compare/v1.14.70...v1.14.71) (2026-10-01)
 
 
