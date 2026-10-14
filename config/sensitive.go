@@ -60,3 +60,22 @@ func (s *SensitiveString) UnmarshalJSON(data []byte) error {
 
 	return nil
 }
+
+// MarshalYAML implements the goccy/go-yaml InterfaceMarshaler interface.
+// The redacted representation is emitted so secrets never leak via YAML.
+func (s SensitiveString) MarshalYAML() (interface{}, error) {
+	return s.String(), nil
+}
+
+// UnmarshalYAML implements the goccy/go-yaml InterfaceUnmarshaler interface,
+// decoding a plain YAML scalar into the sensitive value.
+func (s *SensitiveString) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	var str string
+	if err := unmarshal(&str); err != nil {
+		return err
+	}
+
+	s.value = str
+
+	return nil
+}
