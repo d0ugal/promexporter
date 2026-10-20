@@ -10,8 +10,23 @@
         'gomod',
       ],
       postUpdateOptions: [
-        'gomodTidy',
+        'gomodTidyAll',
       ],
+    },
+    {
+      matchManagers: [
+        'gomod',
+      ],
+      matchDepTypes: [
+        'indirect',
+      ],
+      matchPackageNames: [
+        'golang.org/x/crypto',
+        'golang.org/x/net',
+        'golang.org/x/text',
+        'google.golang.org/grpc',
+      ],
+      enabled: true,
     },
     {
       matchManagers: [
