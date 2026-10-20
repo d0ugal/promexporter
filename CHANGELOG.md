@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.73](https://github.com/d0ugal/promexporter/compare/v1.14.72...v1.14.73) (2026-10-20)
+
+
+### Bug Fixes
+
+* update go toolchain directive to v1.27.3 ([#460](https://github.com/d0ugal/promexporter/issues/460)) ([20e4b30](https://github.com/d0ugal/promexporter/commit/20e4b3040c725d81e059eabf5e74619678627ef9))
+* update module golang.org/x/crypto to v0.58.0 ([#465](https://github.com/d0ugal/promexporter/issues/465)) ([8e1dc8e](https://github.com/d0ugal/promexporter/commit/8e1dc8edba92ab5c17cfc6b8660b1a1da9f367a7))
+* update random exporter security dependencies ([a85772e](https://github.com/d0ugal/promexporter/commit/a85772efe1ee656b92916d0d5569f840271f545a))
+
 ## [1.14.72](https://github.com/d0ugal/promexporter/compare/v1.14.71...v1.14.72) (2026-10-14)
 
 
