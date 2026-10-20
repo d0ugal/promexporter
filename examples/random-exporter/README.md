@@ -107,7 +107,7 @@ export RANDOM_ERROR_PROBABILITY=0.05
 ## Building and Running
 
 ### Prerequisites
-- Go 1.21 or later
+- Go 1.26 or later
 - Access to the promexporter library
 
 ### Build
