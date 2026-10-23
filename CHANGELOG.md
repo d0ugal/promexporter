@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.74](https://github.com/d0ugal/promexporter/compare/v1.14.73...v1.14.74) (2026-10-23)
+
+
+### Bug Fixes
+
+* update module golang.org/x/net to v0.61.0 ([#466](https://github.com/d0ugal/promexporter/issues/466)) ([91ed0d8](https://github.com/d0ugal/promexporter/commit/91ed0d857265d3420d3170e95dcc7375d4e57a24))
+* update module google.golang.org/grpc to v1.84.0 ([#467](https://github.com/d0ugal/promexporter/issues/467)) ([159bce5](https://github.com/d0ugal/promexporter/commit/159bce59fc0ecf017c402b54c9db08b084c30193))
+
 ## [1.14.73](https://github.com/d0ugal/promexporter/compare/v1.14.72...v1.14.73) (2026-10-20)
 
 
