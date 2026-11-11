@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.77](https://github.com/d0ugal/promexporter/compare/v1.14.76...v1.14.77) (2026-11-11)
+
+
+### Bug Fixes
+
+* update go toolchain directive to v1.27.4 ([#477](https://github.com/d0ugal/promexporter/issues/477)) ([2d38e8e](https://github.com/d0ugal/promexporter/commit/2d38e8e915077b023075da964a878adc450ffef8))
+* update module github.com/grafana/pyroscope-go to v1.5.0 ([#478](https://github.com/d0ugal/promexporter/issues/478)) ([35bb782](https://github.com/d0ugal/promexporter/commit/35bb782568ba9350ea27b6f1feaaad9c843e1856))
+* update module golang.org/x/crypto to v0.59.0 ([#481](https://github.com/d0ugal/promexporter/issues/481)) ([4fc7133](https://github.com/d0ugal/promexporter/commit/4fc7133cc6faea410f32d3bba70d975e9c79e0f9))
+
 ## [1.14.76](https://github.com/d0ugal/promexporter/compare/v1.14.75...v1.14.76) (2026-11-09)
 
 
